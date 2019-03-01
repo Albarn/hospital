@@ -15,10 +15,18 @@
         </button>
         <div class=" navbar-collapse collapse">
             <ul class="nav navbar-nav mr-auto">
-                <li>@Html.ActionLink("Home", "Index", "Home", new { }, new {@class="nav-link" })</li>
+                @NavActionLink("Home","Index","Home")
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="nav-link">Hi!</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-link">Hi @User.Identity.Name!</li>
+                    @NavActionLink("Logout","Logout","Account")
+                }
+                else
+                {
+                    @NavActionLink("Login","Login","Account")
+                }
             </ul>
         </div>
     </nav>
@@ -35,3 +43,7 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+@helper NavActionLink(string linkText,string actionName,string controllerName) { 
+    <li>@Html.ActionLink(linkText, actionName, controllerName, new { }, new { @class = "nav-link" })</li>
+}
