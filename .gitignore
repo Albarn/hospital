@@ -1,0 +1,16 @@
+#db files
+*.mdf
+*.ldf
+
+#output directories
+**/bin
+**/obj
+**/packages
+
+#db & admin user creds
+Web.config
+Web.Debug.config
+Web.Release.config
+
+#ide preferences
+**/.vs
