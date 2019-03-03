@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Hospital.DataAccess.Models.Doctor>
+@{
+    ViewBag.Title = "Doctors";
+}
+
+<h2>Doctors</h2>
+@if (User.IsInRole("admin"))
+{
+    @Html.ActionLink("Register New", "NewDoctor", "Account") @:|
+}
+@Html.ActionLink("Group By Position", "Categorized")
+
+<ul class="list-group">
+    @foreach (var d in Model)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            @Html.ActionLink(d.FullName, "Details", new { id = d.UserId })
+            <span class="badge badge-success badge-pill">@d.Position</span>
+        </li>
+    }
+</ul>

@@ -2,4 +2,56 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>Welcome!</h2>
+<div class="card-deck">
+    <div class="card bg-light">
+        <img class="card-img-top" src="~/Content/doctor.png" />
+        <div class="card-body">
+            <h4 class="card-title">Doctors</h4>
+            @if (User.IsInRole("admin"))
+            {
+                <p class="card-text">
+                    Sort by name, position, number of patients.
+                    Register new, attach patient to the doctor.
+                    Make patient assignment.
+                </p>
+                @BtnLink("See the list", "Index", "Doctor")
+            }
+        </div>
+    </div>
+    <div class="card bg-light">
+        <img class="card-img-top" src="~/Content/nurse.png" />
+        <div class="card-body">
+            <h4 class="card-title">Nurses</h4>
+            @if (User.IsInRole("admin"))
+            {
+                <p class="card-text">
+                    See the list.
+                    Register new.
+                </p>
+                @BtnLink("See the list", "Index", "Nurse")
+            }
+
+        </div>
+    </div>
+    <div class="card bg-light">
+        <img class="card-img-top" src="~/Content/patient.png" />
+        <div class="card-body">
+            <h4 class="card-title">Patients</h4>
+            @if (User.IsInRole("admin"))
+            {
+                <p class="card-text">
+                    Sort by name, date of birth.
+                    Register new, attach patient to the doctor.
+                    Make patient assignment.
+                </p>
+                @BtnLink("See the list", "Index", "Patient")
+            }
+
+        </div>
+    </div>
+</div>
+
+@helper BtnLink(string linkText, string actionName, string controllerName)
+{
+    @Html.ActionLink(linkText, actionName, controllerName, new { }, new { @class = "btn btn-success" })
+}

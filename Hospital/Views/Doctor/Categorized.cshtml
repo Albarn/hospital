@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Hospital.DataAccess.Models.Doctor>
+@using Hospital.DataAccess.Models
+@{
+    ViewBag.Title = "Doctors";
+}
+
+<h2>Doctors</h2>
+@if (User.IsInRole("admin"))
+{
+@Html.ActionLink("Register New", "NewDoctor", "Account") @:|
+}
+@Html.ActionLink("View All", "Index")
+
+<div id="doctors">
+    @foreach (var pos in (Position[])Enum.GetValues(typeof(Position)))
+    {
+        var doctors = Model.Where(d => d.Position == pos).ToList();
+    <div class="card">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <a class="card-link" data-toggle="collapse" href="#collapse-@pos">@pos</a>
+            <span class="badge badge-success badge-pill">@doctors.Count</span>
+        </div>
+        <div id="collapse-@pos" class="collapse show" data-parent="#doctors">
+            @foreach (var d in doctors)
+            {
+            <span class="list-group-item">
+                @Html.ActionLink(d.FullName, "Details", new { id = d.UserId })
+            </span>
+            }
+        </div>
+    </div>
+    }
+
+</div>

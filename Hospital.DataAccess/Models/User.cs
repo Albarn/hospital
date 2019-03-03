@@ -14,6 +14,11 @@ namespace Hospital.DataAccess.Models
         public string UserName { get; set; }
         public string PasswordHash { get; set; }
 
+        // is 2 step registration completed:
+        // admin created user,
+        // then attached doctor|nurse|patient to account
+        public bool IsConfirmed { get; set; }
+
         private string rolesString;
         public string RolesString
         {
@@ -32,5 +37,7 @@ namespace Hospital.DataAccess.Models
             Id = Guid.NewGuid().ToString();
             RolesString = "";
         }
+
+        public virtual Doctor Doctor { get; set; }
     }
 }

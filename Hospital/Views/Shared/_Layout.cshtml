@@ -15,17 +15,18 @@
         </button>
         <div class=" navbar-collapse collapse">
             <ul class="nav navbar-nav mr-auto">
-                @NavActionLink("Home","Index","Home")
+                @NavLink("Home", "Index", "Home")
+                @NavLink("Doctors","Index","Doctor")
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li class="nav-link">Hi @User.Identity.Name!</li>
-                    @NavActionLink("Logout","Logout","Account")
+                    @NavLink("Logout", "Logout", "Account")
                 }
                 else
                 {
-                    @NavActionLink("Login","Login","Account")
+                    @NavLink("Login", "Login", "Account")
                 }
             </ul>
         </div>
@@ -35,6 +36,12 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Serhii Shalikov</p>
+            <div>Icons made by:
+            <ul>
+                <li><a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a></li>
+                <li><a href="https://www.flaticon.com/authors/icongeek26" title="Icongeek26">Icongeek26</a></li>
+            </ul>
+            from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
         </footer>
     </div>
 
@@ -44,6 +51,7 @@
 </body>
 </html>
 
-@helper NavActionLink(string linkText,string actionName,string controllerName) { 
-    <li>@Html.ActionLink(linkText, actionName, controllerName, new { }, new { @class = "nav-link" })</li>
+@helper NavLink(string linkText, string actionName, string controllerName)
+{
+    <li>@Html.ActionLink(linkText, actionName, controllerName, new { Area = "" }, new { @class = "nav-link" })</li>
 }
