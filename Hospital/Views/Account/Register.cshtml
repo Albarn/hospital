@@ -1,15 +1,15 @@
 ﻿@model Hospital.Models.RegisterViewModel
 
 @{
-    ViewBag.Title = "New Doctor";
+    ViewBag.Title = "New "+ViewBag.Role;
 }
 
-<h2>New Doctor</h2>
+<h2>New @ViewBag.Role</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Create User First</h4>
         <hr />
@@ -47,5 +47,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", "Doctor")
+    @Html.ActionLink("Back to List", "Index", (string)ViewBag.Role)
 </div>

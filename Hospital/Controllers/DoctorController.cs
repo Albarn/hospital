@@ -28,7 +28,7 @@ namespace Hospital.Controllers
                 .GetOwinContext()
                 .Get<UserManager<User>>()
                 .FindById(id)
-                .IsInRole(Role.Doctor);
+                ?.IsInRole(Role.Doctor)??false;
         }
 
         [Authorize(Roles ="Admin")]

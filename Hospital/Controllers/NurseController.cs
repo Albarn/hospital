@@ -28,7 +28,29 @@ namespace Hospital.Controllers
                 .GetOwinContext()
                 .Get<UserManager<User>>()
                 .FindById(id)
-                .IsInRole(Role.Nurse);
+                ?.IsInRole(Role.Nurse)??false;
+        }
+
+        public ActionResult New(string id)
+        {
+            if (!IsUserNurse(id)) return HttpNotFound();
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult New(CreateNurseViewModel model, string id)
+        {
+            if (!IsUserNurse(id)) return HttpNotFound();
+            if (!ModelState.IsValid) return View(model);
+
+            var nurse = new Nurse()
+            {
+                FullName = model.FullName,
+                UserId = id
+            };
+            nurses.Add(nurse);
+            return RedirectToAction("Index");
         }
     }
 }

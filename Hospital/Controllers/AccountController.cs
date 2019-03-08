@@ -45,8 +45,16 @@ namespace Hospital.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult Register(Role role)
+        {
+            ViewBag.Role = role.ToString();
+            return View();
+        }
+
         //create user and redirect Admin to next registration form
-        private ActionResult RegisterWithRole(RegisterViewModel model, Role role, string controllerNameToRedirect)
+        [HttpPost]
+        public ActionResult Register(RegisterViewModel model, Role role)
         {
             if (!ModelState.IsValid) return View(model);
             var user = new User()
@@ -61,20 +69,7 @@ namespace Hospital.Controllers
                 ModelState.AddModelError("", "Failed to create user, try again.");
                 return View(model);
             }
-            return RedirectToAction("New", controllerNameToRedirect, new { id = user.Id });
-        }
-
-        [Authorize(Roles ="Admin")]
-        public ActionResult NewDoctor()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public ActionResult NewDoctor(RegisterViewModel model)
-        {
-            return RegisterWithRole(model, Role.Doctor, "Doctor");
+            return RedirectToAction("New", role.ToString(), new { id = user.Id });
         }
     }
 }

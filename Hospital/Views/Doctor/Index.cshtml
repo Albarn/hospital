@@ -6,7 +6,7 @@
 <h2>Doctors</h2>
 @if (User.IsInRole("Admin"))
 {
-    @Html.ActionLink("Register New", "NewDoctor", "Account") @:|
+    @Html.ActionLink("Register New", "Register", "Account", new { role=(int)Hospital.DataAccess.Models.Role.Doctor }, new { }) @:|
 }
 @Html.ActionLink("Group By Position", "Categorized")
 

@@ -5,8 +5,12 @@
 
 <h2>Nurses</h2>
 
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Register New", "Register", "Account", new { role = (int)Hospital.DataAccess.Models.Role.Nurse }, new { })
+}
 <ul class="list-group">
-    @foreach(var n in Model)
+    @foreach (var n in Model)
     {
         <li class="list-group-item">
             @Html.ActionLink(n.FullName, "Details", new { id = n.UserId })
