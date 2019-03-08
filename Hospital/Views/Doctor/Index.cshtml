@@ -1,21 +1,34 @@
-﻿@model IEnumerable<Hospital.DataAccess.Models.Doctor>
+﻿@model IEnumerable<Hospital.Models.DoctorItemViewModel>
 @{
     ViewBag.Title = "Doctors";
 }
 
 <h2>Doctors</h2>
-@if (User.IsInRole("Admin"))
-{
-    @Html.ActionLink("Register New", "Register", "Account", new { role=(int)Hospital.DataAccess.Models.Role.Doctor }, new { }) @:|
-}
-@Html.ActionLink("Group By Position", "Categorized")
-
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Register New", "Register", "Account", new { role = (int)Hospital.DataAccess.Models.Role.Doctor }, new { }) @:|
+    }
+    @Html.ActionLink("Group By Position", "Categorized")
+</p>
+<div class="form-group">
+    <button class="btn btn-success btn-sm" onclick="orderElements('ul.list-group','fullname')">Sort by Name</button>
+    <button class="btn btn-success btn-sm" onclick="orderElements('ul.list-group','patientsnumber')">Sort by Patients Number</button>
+</div>
 <ul class="list-group">
     @foreach (var d in Model)
     {
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            @Html.ActionLink(d.FullName, "Details", new { id = d.UserId })
+        <li data-fullname="@d.FullName" data-patientsnumber="@(d.PatientsNumber+1000000)"
+            class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                @Html.ActionLink(d.FullName, "Details", new { id = d.UserId }) |
+                Patients Number: @d.PatientsNumber
+            </span>
             <span class="badge badge-success badge-pill">@d.Position</span>
         </li>
     }
 </ul>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/order-elements.js")    
+}

@@ -25,5 +25,7 @@ namespace Hospital.DataAccess.Models
         public string FullName { get; set; }
         [Required]
         public Position Position { get; set; }
+        
+        public ICollection<Treatment> Treatments { get; set; }
     }
 }

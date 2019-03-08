@@ -17,6 +17,7 @@ namespace Hospital.DataAccess.EntityFramework
         public IDbSet<Doctor> Doctors { get; set; }
         public IDbSet<Nurse> Nurses { get; set; }
         public IDbSet<Patient> Patients { get; set; }
+        public IDbSet<Treatment> Treatments { get; set; }
 
         private static HospitalDbContext instance;
         public static HospitalDbContext Create()

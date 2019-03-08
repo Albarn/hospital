@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Hospital.DataAccess.Models.Doctor>
+﻿@model IEnumerable<Hospital.Models.DoctorItemViewModel>
 @using Hospital.DataAccess.Models
 @{
     ViewBag.Title = "Doctors";
@@ -7,28 +7,40 @@
 <h2>Doctors</h2>
 @if (User.IsInRole("Admin"))
 {
-@Html.ActionLink("Register New", "NewDoctor", "Account") @:|
+    @Html.ActionLink("Register New", "NewDoctor", "Account") @:|
 }
 @Html.ActionLink("View All", "Index")
+
+<div class="form-group">
+    <button class="btn btn-success btn-sm" onclick="orderElements('div.doctor-group','fullname')">Sort by Name</button>
+    <button class="btn btn-success btn-sm" onclick="orderElements('div.doctor-group','patientsnumber')">Sort by Patients Number</button>
+</div>
 
 <div id="doctors">
     @foreach (var pos in (Position[])Enum.GetValues(typeof(Position)))
     {
         var doctors = Model.Where(d => d.Position == pos).ToList();
-    <div class="card">
-        <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <a class="card-link" data-toggle="collapse" href="#collapse-@pos">@pos</a>
-            <span class="badge badge-success badge-pill">@doctors.Count</span>
+        <div 
+             class="card">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <a class="card-link" data-toggle="collapse" href="#collapse-@pos">@pos</a>
+                <span class="badge badge-success badge-pill">@doctors.Count</span>
+            </div>
+            <div id="collapse-@pos" class="collapse show doctor-group" data-parent="#doctors">
+                @foreach (var d in doctors)
+                {
+                <span data-fullname="@d.FullName" data-patientsnumber="@(d.PatientsNumber+1000000)"
+                      class="list-group-item">
+                    @Html.ActionLink(d.FullName, "Details", new { id = d.UserId }) |
+                    Patients Number: @d.PatientsNumber
+                </span>
+                }
+            </div>
         </div>
-        <div id="collapse-@pos" class="collapse show" data-parent="#doctors">
-            @foreach (var d in doctors)
-            {
-            <span class="list-group-item">
-                @Html.ActionLink(d.FullName, "Details", new { id = d.UserId })
-            </span>
-            }
-        </div>
-    </div>
     }
 
 </div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/order-elements.js")
+}

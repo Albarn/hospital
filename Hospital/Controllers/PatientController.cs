@@ -1,4 +1,5 @@
-﻿using Hospital.DataAccess;
+﻿using Hospital.BLL;
+using Hospital.DataAccess;
 using Hospital.DataAccess.EntityFramework;
 using Hospital.DataAccess.Models;
 using Hospital.Models;
@@ -22,19 +23,10 @@ namespace Hospital.Controllers
             return View(patients.GetAll());
         }
 
-        private bool IsUserPatient(string id)
-        {
-            return HttpContext
-                .GetOwinContext()
-                .Get<UserManager<User>>()
-                .FindById(id)
-                ?.IsInRole(Role.Patient) ?? false;
-        }
-
         [Authorize(Roles="Admin")]
         public ActionResult New(string id)
         {
-            if (!IsUserPatient(id)) return HttpNotFound();
+            if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
 
             return View();
         }
@@ -43,7 +35,7 @@ namespace Hospital.Controllers
         [HttpPost]
         public ActionResult New(CreatePatientViewModel model,string id)
         {
-            if (!IsUserPatient(id)) return HttpNotFound();
+            if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
             if (!ModelState.IsValid) return View(model);
 
             //check if patient age is correct
@@ -63,6 +55,13 @@ namespace Hospital.Controllers
             };
             patients.Add(patient);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(string id)
+        {
+            if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
+
+            return View(patients.Find(id));
         }
     }
 }

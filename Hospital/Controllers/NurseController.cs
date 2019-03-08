@@ -1,4 +1,5 @@
-﻿using Hospital.DataAccess;
+﻿using Hospital.BLL;
+using Hospital.DataAccess;
 using Hospital.DataAccess.EntityFramework;
 using Hospital.DataAccess.Models;
 using Hospital.Models;
@@ -22,18 +23,9 @@ namespace Hospital.Controllers
             return View(nurses.GetAll().OrderBy(d => d.FullName));
         }
 
-        private bool IsUserNurse(string id)
-        {
-            return HttpContext
-                .GetOwinContext()
-                .Get<UserManager<User>>()
-                .FindById(id)
-                ?.IsInRole(Role.Nurse)??false;
-        }
-
         public ActionResult New(string id)
         {
-            if (!IsUserNurse(id)) return HttpNotFound();
+            if (!UserService.IsUserInRole(id, Role.Nurse)) return HttpNotFound();
 
             return View();
         }
@@ -41,7 +33,7 @@ namespace Hospital.Controllers
         [HttpPost]
         public ActionResult New(CreateNurseViewModel model, string id)
         {
-            if (!IsUserNurse(id)) return HttpNotFound();
+            if (!UserService.IsUserInRole(id, Role.Nurse)) return HttpNotFound();
             if (!ModelState.IsValid) return View(model);
 
             var nurse = new Nurse()

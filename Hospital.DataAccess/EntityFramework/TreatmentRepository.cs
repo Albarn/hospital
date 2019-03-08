@@ -1,0 +1,47 @@
+﻿using Hospital.DataAccess.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Hospital.DataAccess.EntityFramework
+{
+    public class TreatmentRepository : IRepository<Treatment>
+    {
+        private HospitalDbContext db = HospitalDbContext.Create();
+        public void Add(Treatment entity)
+        {
+            db.Treatments.Add(entity);
+            db.SaveChanges();
+        }
+
+        public void Delete(Treatment entity)
+        {
+            db.Treatments.Remove(entity);
+            db.SaveChanges();
+        }
+
+        public Treatment Find(params object[] keys)
+        {
+            return db.Treatments.Find(keys);
+        }
+
+        public IEnumerable<Treatment> Get(Func<Treatment, bool> condition)
+        {
+            return db.Treatments.Where(condition).ToList();
+        }
+
+        public IEnumerable<Treatment> GetAll()
+        {
+            return db.Treatments.ToList();
+        }
+
+        public void Update(Treatment entity)
+        {
+            var entry = db.Treatments.Find(entity.TreatmentId);
+            db.Entry(entry).CurrentValues.SetValues(entity);
+            db.SaveChanges();
+        }
+    }
+}

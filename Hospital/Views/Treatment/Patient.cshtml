@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Hospital.Models.TreatmentItemViewModel>
+@{
+    ViewBag.Title = "Treatments";
+}
+
+<h2>Patient Treatments</h2>
+
+<ul class="list-group">
+    @foreach(var t in Model)
+    {
+    <li class="list-group-item">
+        @t.StartDate.ToShortDateString() / 
+        @Html.ActionLink(t.Diagnosis,"Details",new { id = t.TreatmentId }) | 
+        @Html.ActionLink("Doctor","Details","Doctor",new { id = t.DoctorId }, new { })
+    </li>
+    }
+</ul>

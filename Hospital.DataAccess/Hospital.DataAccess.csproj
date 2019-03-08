@@ -96,11 +96,13 @@
     <Compile Include="EntityFramework\HospitalDbInitializer.cs" />
     <Compile Include="EntityFramework\NurseRepository.cs" />
     <Compile Include="EntityFramework\PatientRepository.cs" />
+    <Compile Include="EntityFramework\TreatmentRepository.cs" />
     <Compile Include="EntityFramework\UserStore.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Nurse.cs" />
     <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\Treatment.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
