@@ -28,11 +28,10 @@ namespace Hospital.Controllers
                 .GetOwinContext()
                 .Get<UserManager<User>>()
                 .FindById(id)
-                .Roles
-                .Contains("doctor");
+                .IsInRole(Role.Doctor);
         }
 
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles ="Admin")]
         public ActionResult New(string id)
         {
             if (!IsUserDoctor(id)) return HttpNotFound();
@@ -41,7 +40,7 @@ namespace Hospital.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles ="Admin")]
         public ActionResult New(string id, CreateDoctorViewModel model)
         {
             if (!ModelState.IsValid) return View(model);

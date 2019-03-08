@@ -45,15 +45,15 @@ namespace Hospital.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //create user and redirect admin to next registration form
-        private ActionResult RegisterWithRole(RegisterViewModel model, string role, string controllerNameToRedirect)
+        //create user and redirect Admin to next registration form
+        private ActionResult RegisterWithRole(RegisterViewModel model, Role role, string controllerNameToRedirect)
         {
             if (!ModelState.IsValid) return View(model);
             var user = new User()
             {
                 UserName = model.UserName,
                 IsConfirmed = false,
-                RolesString = role
+                Roles = (int)role
             };
             var res = SignInManager.UserManager.Create(user, model.Password);
             if (!res.Succeeded)
@@ -64,17 +64,17 @@ namespace Hospital.Controllers
             return RedirectToAction("New", controllerNameToRedirect, new { id = user.Id });
         }
 
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles ="Admin")]
         public ActionResult NewDoctor()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult NewDoctor(RegisterViewModel model)
         {
-            return RegisterWithRole(model, "doctor", "Doctor");
+            return RegisterWithRole(model, Role.Doctor, "Doctor");
         }
     }
 }

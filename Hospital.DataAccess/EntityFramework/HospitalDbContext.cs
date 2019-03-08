@@ -10,7 +10,7 @@ namespace Hospital.DataAccess.EntityFramework
 {
     class HospitalDbContext:DbContext
     {
-        public HospitalDbContext(string connString = "Default") : base(connString) { }
+        public HospitalDbContext() : base("Default") { }
         static HospitalDbContext() { Database.SetInitializer(new HospitalDbInitializer()); }
 
         public IDbSet<User> Users { get; set; }

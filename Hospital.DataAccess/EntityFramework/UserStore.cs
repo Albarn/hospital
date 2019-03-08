@@ -17,7 +17,7 @@ namespace Hospital.DataAccess.EntityFramework
     {
         private HospitalDbContext db = HospitalDbContext.Create();
 
-        //implements interfaces with UserName, Id and RolesString property
+        //implements interfaces with UserName, Id, Roles and PasswordHash property
         #region IUserStore
         public Task CreateAsync(User user)
         {
@@ -70,24 +70,27 @@ namespace Hospital.DataAccess.EntityFramework
         #region IUserRoleStore
         public Task AddToRoleAsync(User user, string roleName)
         {
-            user.Roles.Add(roleName);
-            return UpdateAsync(user);
+            Enum.TryParse(roleName, out Role role);
+            user.AddRole(role);
+            return Task.CompletedTask;
         }
 
         public Task RemoveFromRoleAsync(User user, string roleName)
         {
-            user.Roles.Remove(roleName);
-            return UpdateAsync(user);
+            Enum.TryParse(roleName, out Role role);
+            user.RemoveRole(role);
+            return Task.CompletedTask;
         }
 
         public Task<IList<string>> GetRolesAsync(User user)
         {
-            return Task.FromResult((IList<string>)user.Roles);
+            return Task.FromResult((IList<string>)user.GetRoles());
         }
 
         public Task<bool> IsInRoleAsync(User user, string roleName)
         {
-            return Task.FromResult(user.Roles.Contains(roleName));
+            Enum.TryParse(roleName, out Role role);
+            return Task.FromResult(user.IsInRole(role));
         }
         #endregion
 

@@ -7,7 +7,7 @@
         <img class="card-img-top" src="~/Content/doctor.png" />
         <div class="card-body">
             <h4 class="card-title">Doctors</h4>
-            @if (User.IsInRole("admin"))
+            @if (User.IsInRole("Admin"))
             {
                 <p class="card-text">
                     Sort by name, position, number of patients.
@@ -22,7 +22,7 @@
         <img class="card-img-top" src="~/Content/nurse.png" />
         <div class="card-body">
             <h4 class="card-title">Nurses</h4>
-            @if (User.IsInRole("admin"))
+            @if (User.IsInRole("Admin"))
             {
                 <p class="card-text">
                     See the list.
@@ -37,7 +37,7 @@
         <img class="card-img-top" src="~/Content/patient.png" />
         <div class="card-body">
             <h4 class="card-title">Patients</h4>
-            @if (User.IsInRole("admin"))
+            @if (User.IsInRole("Admin"))
             {
                 <p class="card-text">
                     Sort by name, date of birth.

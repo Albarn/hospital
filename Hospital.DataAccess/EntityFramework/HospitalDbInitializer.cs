@@ -17,14 +17,14 @@ namespace Hospital.DataAccess.EntityFramework
         protected override void Seed(HospitalDbContext context)
         {
             var userManager = new UserManager<User>(new UserStore());
-            
-            //create admin user with creds from config file
+
+            //create Admin user with creds from config file
             userManager.Create(
                 new User()
                 {
                     UserName = WebConfigurationManager.AppSettings["AdminUserName"],
-                    RolesString = "admin",
-                    IsConfirmed=true
+                    Roles = (int)Role.Admin,
+                    IsConfirmed = true
                 },
                 WebConfigurationManager.AppSettings["AdminPassword"]);
 
@@ -33,15 +33,15 @@ namespace Hospital.DataAccess.EntityFramework
                 new User()
                 {
                     UserName = "john_d",
-                    RolesString = "doctor",
+                    Roles = (int)Role.Doctor,
                     IsConfirmed = true
                 },
                 "debug0");
-            var res=userManager.Create(
+            var res = userManager.Create(
                 new User()
                 {
                     UserName = "sasha_d",
-                    RolesString = "doctor",
+                    Roles = (int)Role.Doctor,
                     IsConfirmed = true
                 },
                 "debug0");

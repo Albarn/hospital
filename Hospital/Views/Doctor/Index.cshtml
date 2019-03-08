@@ -4,7 +4,7 @@
 }
 
 <h2>Doctors</h2>
-@if (User.IsInRole("admin"))
+@if (User.IsInRole("Admin"))
 {
     @Html.ActionLink("Register New", "NewDoctor", "Account") @:|
 }
