@@ -79,5 +79,6 @@ namespace Hospital.DataAccess.Models
 
         public virtual Doctor Doctor { get; set; }
         public virtual Nurse Nurse { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }

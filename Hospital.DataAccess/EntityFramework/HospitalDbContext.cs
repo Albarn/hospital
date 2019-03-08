@@ -16,6 +16,7 @@ namespace Hospital.DataAccess.EntityFramework
         public IDbSet<User> Users { get; set; }
         public IDbSet<Doctor> Doctors { get; set; }
         public IDbSet<Nurse> Nurses { get; set; }
+        public IDbSet<Patient> Patients { get; set; }
 
         private static HospitalDbContext instance;
         public static HospitalDbContext Create()
@@ -33,6 +34,10 @@ namespace Hospital.DataAccess.EntityFramework
             modelBuilder.Entity<User>()
                 .HasOptional(u => u.Nurse)
                 .WithRequired(n => n.User);
+
+            modelBuilder.Entity<User>()
+                .HasOptional(u => u.Patient)
+                .WithRequired(p => p.User);
 
             base.OnModelCreating(modelBuilder);
         }

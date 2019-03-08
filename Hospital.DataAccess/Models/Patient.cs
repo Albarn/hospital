@@ -8,22 +8,18 @@ using System.Threading.Tasks;
 
 namespace Hospital.DataAccess.Models
 {
-    public enum Position
-    {
-        Pediatrician,
-        Traumatologist,
-        Surgeon
-    }
-    public class Doctor
+    public class Patient
     {
         [Key]
+        [Required]
         public string UserId { get; set; }
         public User User { get; set; }
 
-        [StringLength(30)]
         [Required]
         public string FullName { get; set; }
+
+        [DataType(DataType.Date)]
         [Required]
-        public Position Position { get; set; }
+        public DateTime BirthDate { get; set; }
     }
 }

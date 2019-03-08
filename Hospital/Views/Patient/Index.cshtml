@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Hospital.DataAccess.Models.Patient>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Patients</h2>
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Register New", "Register", "Account", new { role = (int)Hospital.DataAccess.Models.Role.Patient }, new { })
+    }
+</p>
+
+<div class="form-group">
+    <button class="btn btn-sm btn-success" onclick="orderElements('ul.list-group','fullname')">
+        Sort by name
+    </button>
+    <button class="btn btn-sm btn-success" onclick="orderElements('ul.list-group','date')">
+        Sort by birthdate
+    </button>
+</div>
+<ul class="list-group">
+    @foreach (var p in Model)
+    {
+        <li class="list-group-item" data-date="@p.BirthDate.ToString("yyyy.mm.dd")" data-fullname="@p.FullName">
+            @p.BirthDate.ToShortDateString() / @Html.ActionLink(p.FullName,"Details",new { id = p.UserId })
+        </li>
+    }
+</ul>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/order-elements.js")
+}
