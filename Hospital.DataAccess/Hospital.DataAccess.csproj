@@ -94,9 +94,11 @@
     <Compile Include="EntityFramework\DoctorRepository.cs" />
     <Compile Include="EntityFramework\HospitalDbContext.cs" />
     <Compile Include="EntityFramework\HospitalDbInitializer.cs" />
+    <Compile Include="EntityFramework\NurseRepository.cs" />
     <Compile Include="EntityFramework\UserStore.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Nurse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

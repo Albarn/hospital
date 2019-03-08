@@ -162,6 +162,7 @@
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NurseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -248,6 +249,7 @@
     <Content Include="Views\Doctor\New.cshtml" />
     <Content Include="Views\Account\NewDoctor.cshtml" />
     <Content Include="Views\Doctor\Categorized.cshtml" />
+    <Content Include="Views\Nurse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

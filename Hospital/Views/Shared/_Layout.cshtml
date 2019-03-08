@@ -16,7 +16,8 @@
         <div class=" navbar-collapse collapse">
             <ul class="nav navbar-nav mr-auto">
                 @NavLink("Home", "Index", "Home")
-                @NavLink("Doctors","Index","Doctor")
+                @NavLink("Doctors", "Index", "Doctor")
+                @NavLink("Nurses", "Index", "Nurse")
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Identity.IsAuthenticated)

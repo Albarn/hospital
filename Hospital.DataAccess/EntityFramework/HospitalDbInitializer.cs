@@ -29,37 +29,26 @@ namespace Hospital.DataAccess.EntityFramework
                 WebConfigurationManager.AppSettings["AdminPassword"]);
 
             //create other users
-            userManager.Create(
-                new User()
-                {
-                    UserName = "john_d",
-                    Roles = (int)Role.Doctor,
-                    IsConfirmed = true
-                },
-                "debug0");
-            var res = userManager.Create(
-                new User()
-                {
-                    UserName = "sasha_d",
-                    Roles = (int)Role.Doctor,
-                    IsConfirmed = true
-                },
-                "debug0");
+            User
+                d1 = new User() { UserName = "john_d", Roles = (int)Role.Doctor, IsConfirmed = true },
+                d2 = new User() { UserName = "sasha_d", Roles = (int)Role.Doctor, IsConfirmed = true },
+                n1 = new User() { UserName = "mike_n", Roles = (int)Role.Nurse, IsConfirmed = true },
+                n2 = new User() { UserName = "kate_n", Roles = (int)Role.Nurse, IsConfirmed = true };
+
+            string pass = "debug0";
+            userManager.Create(d1, pass);
+            userManager.Create(d2, pass);
+            userManager.Create(n1, pass);
+            userManager.Create(n2, pass);
 
             //add related entities to users
-            var u = context.Users.ToList();
-            context.Doctors.Add(new Doctor()
-            {
-                FullName = "John Doe",
-                Position = Position.Pediatrician,
-                UserId = userManager.FindByName("john_d").Id
-            });
-            context.Doctors.Add(new Doctor()
-            {
-                FullName = "Sasha Kim",
-                Position = Position.Surgeon,
-                UserId = userManager.FindByName("sasha_d").Id
-            });
+            context.Doctors.Add(
+                new Doctor() { FullName = "John Doe", Position = Position.Pediatrician, UserId = d1.Id });
+            context.Doctors.Add(
+                new Doctor() { FullName = "Sasha Kim", Position = Position.Surgeon, UserId = d2.Id });
+            context.Nurses.Add(new Nurse() { FullName = "Mike Silly", UserId = n1.Id });
+            context.Nurses.Add(new Nurse() { FullName = "Kate Brave", UserId = n2.Id });
+            
             context.SaveChanges();
             base.Seed(context);
         }

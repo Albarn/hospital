@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Hospital.DataAccess.Models.Nurse>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Nurses</h2>
+
+<ul class="list-group">
+    @foreach(var n in Model)
+    {
+        <li class="list-group-item">
+            @Html.ActionLink(n.FullName, "Details", new { id = n.UserId })
+        </li>
+    }
+</ul>
