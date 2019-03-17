@@ -105,7 +105,7 @@ namespace Hospital.DataAccess.EntityFramework
             {
                 new Treatment(){ PatientId = patients[0].Id, DoctorId = doctors[0].Id, StartDate = new DateTime(2019,03,14), Complaint = "headache" },
                 new Treatment(){ PatientId = patients[0].Id, DoctorId = doctors[1].Id, StartDate = new DateTime(2019,03,11), Complaint = "vomiting" },
-                new Treatment(){ PatientId = patients[0].Id, DoctorId = doctors[2].Id, StartDate = new DateTime(2019,02,14), Complaint = "anxiousness" },
+                new Treatment(){ PatientId = patients[0].Id, DoctorId = doctors[4].Id, StartDate = new DateTime(2019,02,14), Complaint = "anxiousness" },
                 new Treatment(){ PatientId = patients[1].Id, DoctorId = doctors[0].Id, StartDate = new DateTime(2019,03,08), Complaint = "bad stomach" },
                 new Treatment(){ PatientId = patients[2].Id, DoctorId = doctors[0].Id, StartDate = new DateTime(2019,03,13), Complaint = "headache" }
             };

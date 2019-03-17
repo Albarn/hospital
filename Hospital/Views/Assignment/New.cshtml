@@ -15,8 +15,8 @@
         @Html.LabelFor(model => model.IsDoctor, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <div class="checkbox">
-                <input type="radio" name="IsDoctor" value="true" /> Doctor
-                <input type="radio" name="IsDoctor" value="false" /> Nurse
+                <input type="radio" name="IsDoctor" value="true" @(Model?.IsDoctor==true?"checked='checked'":"") /> Doctor
+                <input type="radio" name="IsDoctor" value="false" @(!Model?.IsDoctor==true?"checked='checked'":"") /> Nurse
                 @Html.ValidationMessageFor(model => model.IsDoctor, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,10 +56,12 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @foreach(var t in (AssignmentType[])Enum.GetValues(typeof(AssignmentType)))
+            @foreach (var t in (AssignmentType[])Enum.GetValues(typeof(AssignmentType)))
             {
-                <input type="radio" name="Type" value="@t" /> @t.ToString()
+                <input type="radio" name="Type" value="@t" @(Model?.Type == t ? "checked='checked'" : "") /> @t.ToString()
             }
+            <br />
+            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
         </div>
     </div>
 

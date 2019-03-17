@@ -15,12 +15,15 @@
             <p>
                 @a.Instruction
             </p>
-            @using (Ajax.BeginForm(
-                "Finish",
-                new { id = a.AssignmentId },
-                new AjaxOptions() { UpdateTargetId = a.AssignmentId }))
+            @if (a.AssignmentDate.Date <= DateTime.Now.Date)
             {
-                <button type="submit" class="btn btn-outline-success">Finish</button>
+                using (Ajax.BeginForm(
+                    "Finish",
+                    new { id = a.AssignmentId },
+                    new AjaxOptions() { UpdateTargetId = a.AssignmentId }))
+                {
+                    <button type="submit" class="btn btn-outline-success">Finish</button>
+                }
             }
         </div>
     </div>

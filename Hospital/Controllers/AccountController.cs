@@ -42,7 +42,10 @@ namespace Hospital.Controllers
                 ModelState.AddModelError("", "Registration is not completed.");
                 return View(model);
             }
-            return Redirect(returnUrl);
+            if (returnUrl != null)
+                return Redirect(returnUrl);
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Logout()

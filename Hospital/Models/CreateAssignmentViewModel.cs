@@ -20,9 +20,11 @@ namespace Hospital.Models
         [Required]
         public DateTime AssignmentDate { get; set; }
         [Required]
+        [StringLength(20,MinimumLength =8)]
         public string Diagnosis { get; set; }
         [Required]
         [DataType(DataType.MultilineText)]
+        [StringLength(200,MinimumLength =8)]
         public string Instruction { get; set; }
     }
 }
