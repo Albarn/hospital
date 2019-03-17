@@ -17,13 +17,19 @@ namespace Hospital.Controllers
     {
         private IRepository<Doctor> doctors = new DoctorRepository();
         private IRepository<Treatment> treatments = new TreatmentRepository();
-
-        // GET: Admin/Doctor
+        
         public ActionResult Index()
         {
             return View(PatientsCounter
                 .CalculatePatientsNumber(doctors.GetAll(),treatments.GetAll())
                 .OrderBy(d=>d.FullName));
+        }
+
+        public ActionResult Categorized()
+        {
+            return View(PatientsCounter
+                .CalculatePatientsNumber(doctors.GetAll(), treatments.GetAll())
+                .OrderBy(d => d.FullName));
         }
 
         [Authorize(Roles ="Admin")]
@@ -38,8 +44,8 @@ namespace Hospital.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult New(string id, CreateDoctorViewModel model)
         {
-            if (!ModelState.IsValid) return View(model);
             if (!UserService.IsUserInRole(id, Role.Doctor)) return HttpNotFound();
+            if (!ModelState.IsValid) return View(model);
 
             var doctor = new Doctor()
             {
@@ -49,13 +55,6 @@ namespace Hospital.Controllers
             };
             doctors.Add(doctor);
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Categorized()
-        {
-            return View(PatientsCounter
-                .CalculatePatientsNumber(doctors.GetAll(), treatments.GetAll())
-                .OrderBy(d => d.FullName));
         }
     }
 }

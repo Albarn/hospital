@@ -9,7 +9,8 @@ namespace Hospital.Models
 {
     public class CreateDoctorViewModel
     {
-        [StringLength(30)]
+        [StringLength(30,MinimumLength = 8)]
+        [RegularExpression("^([a-z|A-Z|']+)( ([a-z|A-Z|']+))*$",ErrorMessage ="Name is not correct")]
         [Required]
         public string FullName { get; set; }
         [Required]
