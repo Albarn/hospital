@@ -161,6 +161,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BLL\PatientsCounter.cs" />
     <Compile Include="BLL\UserService.cs" />
+    <Compile Include="Controllers\AssignmentController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateAssignmentViewModel.cs" />
     <Compile Include="Models\CreateDoctorViewModel.cs" />
     <Compile Include="Models\CreateNurseViewModel.cs" />
     <Compile Include="Models\CreatePatientViewModel.cs" />
@@ -215,6 +217,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Scripts\order-elements.js" />
     <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="NLog.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -266,6 +269,10 @@
     <Content Include="Views\Patient\Details.cshtml" />
     <Content Include="Views\Treatment\New.cshtml" />
     <Content Include="Views\Treatment\Patient.cshtml" />
+    <Content Include="Views\Treatment\Doctor.cshtml" />
+    <Content Include="Views\Treatment\Details.cshtml" />
+    <Content Include="Views\Assignment\New.cshtml" />
+    <Content Include="Views\Treatment\Finish.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

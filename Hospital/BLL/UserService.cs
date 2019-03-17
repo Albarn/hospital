@@ -19,5 +19,15 @@ namespace Hospital.BLL
                 .FindById(id)
                 ?.IsInRole(role) ?? false;
         }
+
+        public static string GetUserId()
+        {
+            return HttpContext
+                .Current
+                .GetOwinContext()
+                .Get<UserManager<User>>()
+                .FindByName(HttpContext.Current.User.Identity.Name)
+                ?.Id;
+        }
     }
 }

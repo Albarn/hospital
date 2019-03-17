@@ -25,11 +25,15 @@ namespace Hospital.Controllers
         public ActionResult Login(LoginViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
-            if (SignInManager.UserManager.FindByName(model.UserName)?.IsConfirmed != true)
+
+            //check IsConfirmed property
+            var user = SignInManager.UserManager.FindByName(model.UserName);
+            if (user!=null && user.IsConfirmed != true)
             {
                 ModelState.AddModelError("", "Registration is not completed");
                 return View(model);
             }
+
             var loginResult=SignInManager.PasswordSignIn(model.UserName, model.Password, true, false);
             if (loginResult != SignInStatus.Success)
             {

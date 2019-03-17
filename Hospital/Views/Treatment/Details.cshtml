@@ -1,0 +1,53 @@
+﻿@model Hospital.DataAccess.Models.Treatment
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Treatment Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Patient: </dt> 
+        <dd>@Html.ActionLink(Model.Patient.FullName,"Details","Patient",new { id = Model.PatientId },new { }) </dd>
+        <dt>Doctor: </dt>
+        <dd>@Html.ActionLink(Model.Doctor.FullName, "Details", "Doctor", new { id = Model.DoctorId }, new { }) </dd>
+        <dt>Started: </dt>
+        <dd>@Model.StartDate.ToShortDateString()</dd>
+        <dt>Complaint: </dt>
+        <dd>@Model.Complaint</dd>
+        <dt>Assignments: </dt>
+        <dd>
+            <ul>
+                @foreach(var a in Model.Assignments)
+                {
+                <li>
+                    @a.AssignmentDate.ToShortDateString() / [@a.Type]
+                    @Html.ActionLink(a.Diagnosis,"Details","Assignment",new { id = a.AssignmentId },new { })
+                </li>
+                }
+            </ul>
+        </dd>
+        <dt>State: </dt>
+        <dd>
+            @if (Model.FinishDate == null)
+            {
+                @:Not Finished
+            }
+            else
+            {
+                @:Finished on @Model.FinishDate with @Model.FinalDiagnosis
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Doctor"))
+    {
+        @Html.ActionLink("Make Assignment", "New", "Assignment", new { id = Model.TreatmentId }, new { }) @:| 
+    }
+    @if (Model.FinishDate == null)
+    {
+        @Html.ActionLink("Finish","Finish","Treatment", new { id = Model.TreatmentId }, new { }) @:| 
+    }
+    @Html.ActionLink("Back to List", "Doctor")
+</p>

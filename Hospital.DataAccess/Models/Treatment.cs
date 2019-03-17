@@ -13,11 +13,11 @@ namespace Hospital.DataAccess.Models
 
         [Required]
         public string DoctorId { get; set; }
-        public Doctor Doctor { get; set; }
+        public virtual Doctor Doctor { get; set; }
 
         [Required]
         public string PatientId { get; set; }
-        public Patient Patient { get; set; }
+        public virtual Patient Patient { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -28,9 +28,12 @@ namespace Hospital.DataAccess.Models
         public DateTime? FinishDate { get; set; }
         public string FinalDiagnosis { get; set; }
 
+        public ICollection<Assignment> Assignments { get; set; }
+
         public Treatment()
         {
             TreatmentId = Guid.NewGuid().ToString();
+            Assignments = new List<Assignment>();
         }
     }
 }

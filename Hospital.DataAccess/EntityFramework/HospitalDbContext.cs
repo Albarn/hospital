@@ -18,6 +18,7 @@ namespace Hospital.DataAccess.EntityFramework
         public IDbSet<Nurse> Nurses { get; set; }
         public IDbSet<Patient> Patients { get; set; }
         public IDbSet<Treatment> Treatments { get; set; }
+        public IDbSet<Assignment> Assignments { get; set; }
 
         private static HospitalDbContext instance;
         public static HospitalDbContext Create()
@@ -39,6 +40,31 @@ namespace Hospital.DataAccess.EntityFramework
             modelBuilder.Entity<User>()
                 .HasOptional(u => u.Patient)
                 .WithRequired(p => p.User);
+
+            modelBuilder.Entity<Doctor>()
+                .HasMany(d => d.Treatments)
+                .WithRequired(t => t.Doctor)
+                .HasForeignKey(t => t.DoctorId);
+
+            modelBuilder.Entity<Patient>()
+                .HasMany(d => d.Treatments)
+                .WithRequired(t => t.Patient)
+                .HasForeignKey(t => t.PatientId);
+
+            modelBuilder.Entity<Treatment>()
+                .HasMany(t => t.Assignments)
+                .WithRequired(t => t.Treatment)
+                .HasForeignKey(t => t.TreatmentId);
+
+            modelBuilder.Entity<Doctor>()
+                .HasMany(d => d.Assignments)
+                .WithOptional(a => a.Doctor)
+                .HasForeignKey(a => a.DoctorId);
+
+            modelBuilder.Entity<Nurse>()
+                .HasMany(n => n.Assignments)
+                .WithOptional(a => a.Nurse)
+                .HasForeignKey(a => a.NurseId);
 
             base.OnModelCreating(modelBuilder);
         }

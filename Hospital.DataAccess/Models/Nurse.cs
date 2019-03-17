@@ -16,5 +16,7 @@ namespace Hospital.DataAccess.Models
         [StringLength(30)]
         [Required]
         public string FullName { get; set; }
+
+        public ICollection<Assignment> Assignments { get; set; }
     }
 }

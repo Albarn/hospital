@@ -1,6 +1,7 @@
 ﻿using Hospital.DataAccess.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,17 +25,21 @@ namespace Hospital.DataAccess.EntityFramework
 
         public Treatment Find(params object[] keys)
         {
-            return db.Treatments.Find(keys);
+            var t = db.Treatments.Find(keys);
+            db.Entry(t).Reference(tr => tr.Doctor).Load();
+            db.Entry(t).Reference(tr => tr.Patient).Load();
+            db.Entry(t).Collection(tr => tr.Assignments).Load();
+            return t;
         }
 
         public IEnumerable<Treatment> Get(Func<Treatment, bool> condition)
         {
-            return db.Treatments.Where(condition).ToList();
+            return db.Treatments.Include(t=>t.Patient).Include(t=>t.Doctor).Where(condition).ToList();
         }
 
         public IEnumerable<Treatment> GetAll()
         {
-            return db.Treatments.ToList();
+            return db.Treatments.Include(t => t.Patient).Include(t => t.Doctor).ToList();
         }
 
         public void Update(Treatment entity)

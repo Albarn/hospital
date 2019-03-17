@@ -18,7 +18,14 @@
                 @NavLink("Home", "Index", "Home")
                 @NavLink("Doctors", "Index", "Doctor")
                 @NavLink("Nurses", "Index", "Nurse")
-                @NavLink("Patients", "Index", "Patient")
+                @if (User.IsInRole("Admin")||User.IsInRole("Nurse"))
+                {
+                    @NavLink("Patients", "Index", "Patient")
+                }
+                @if (User.IsInRole("Doctor"))
+                {
+                    @NavLink("Treatments","Doctor","Treatment")
+                }
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Identity.IsAuthenticated)

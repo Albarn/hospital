@@ -63,5 +63,41 @@ namespace Hospital.Controllers
                     TreatmentId = t.TreatmentId
                 }));
         }
+
+        public ActionResult Doctor(string id)
+        {
+            if (User.IsInRole(Role.Doctor.ToString())) id = UserService.GetUserId();
+            if (!UserService.IsUserInRole(id, Role.Doctor)) return HttpNotFound();
+
+            return View(treatments
+                .Get(t => t.DoctorId == id && t.FinishDate == null)
+                .Select(t => new TreatmentItemViewModel()
+                {
+                    Diagnosis = t.Complaint,
+                    PatientId = t.PatientId,
+                    StartDate = t.StartDate,
+                    TreatmentId = t.TreatmentId
+                }));
+        }
+
+        public ActionResult Details(string id)
+        {
+            return View(treatments.Find(id));
+        }
+
+        public ActionResult Finish(string id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Finish(string FinalDiagnosis, string id)
+        {
+            var treatment = treatments.Find(id);
+            treatment.FinalDiagnosis = FinalDiagnosis;
+            treatment.FinishDate = DateTime.Now;
+            treatments.Update(treatment);
+            return RedirectToAction("Doctor", new { id = UserService.GetUserId() });
+        }
     }
 }
