@@ -4,7 +4,7 @@
     ViewBag.Title = "Doctors";
 }
 
-<h2>Doctors</h2>
+<h4>Doctors</h4>
 @if (User.IsInRole("Admin"))
 {
     @Html.ActionLink("Register New", "NewDoctor", "Account") @:|
@@ -20,18 +20,17 @@
     @foreach (var pos in (Position[])Enum.GetValues(typeof(Position)))
     {
         var doctors = Model.Where(d => d.Position == pos).ToList();
-        <div 
-             class="card">
+        <div class="card">
             <div class="card-header bg-light d-flex justify-content-between align-items-center">
                 <a class="card-link" data-toggle="collapse" href="#collapse-@pos">@pos</a>
                 <span class="badge badge-success badge-pill">@doctors.Count</span>
             </div>
-            <div id="collapse-@pos" class="collapse show doctor-group" data-parent="#doctors">
+            <div id="collapse-@pos" class="collapse doctor-group" data-parent="#doctors">
                 @foreach (var d in doctors)
                 {
                 <span data-fullname="@d.FullName" data-patientsnumber="@(d.PatientsNumber+1000000)"
                       class="list-group-item">
-                    @Html.ActionLink(d.FullName, "Details", new { id = d.UserId }) |
+                    <span class="fixed-size">@Html.ActionLink(d.FullName, "Details", new { id = d.UserId })</span> |
                     Patients Number: @d.PatientsNumber
                 </span>
                 }

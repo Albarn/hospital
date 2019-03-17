@@ -3,7 +3,7 @@
     ViewBag.Title = "Doctors";
 }
 
-<h2>Doctors</h2>
+<h4>Doctors</h4>
 <p>
     @if (User.IsInRole("Admin"))
     {
@@ -21,7 +21,7 @@
         <li data-fullname="@d.FullName" data-patientsnumber="@(d.PatientsNumber+1000000)"
             class="list-group-item d-flex justify-content-between align-items-center">
             <span>
-                @Html.ActionLink(d.FullName, "Details", new { id = d.UserId }) |
+                <span class="fixed-size">@Html.ActionLink(d.FullName, "Details", new { id = d.UserId })</span> |
                 Patients Number: @d.PatientsNumber
             </span>
             <span class="badge badge-success badge-pill">@d.Position</span>

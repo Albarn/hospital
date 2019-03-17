@@ -39,3 +39,8 @@ footer ul li, footer ul{
     width: 100%;
     padding: 10px;
 }
+
+.fixed-size{
+    display:inline-block;
+    width: 100px;
+}
