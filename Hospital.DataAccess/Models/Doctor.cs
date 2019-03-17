@@ -22,6 +22,7 @@ namespace Hospital.DataAccess.Models
 
         [StringLength(30)]
         [Required]
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
         [Required]
         public Position Position { get; set; }

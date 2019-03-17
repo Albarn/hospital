@@ -16,6 +16,7 @@ namespace Hospital.DataAccess.Models
         public User User { get; set; }
 
         [Required]
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
         [DataType(DataType.Date)]

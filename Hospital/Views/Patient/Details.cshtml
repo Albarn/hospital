@@ -4,10 +4,8 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Patient</h4>
+    <h4>Patient Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -30,6 +28,7 @@
 </div>
 <p>
     @Html.ActionLink("Active Treatments", "Patient", "Treatment", new { id = Model.UserId }, new { }) |
+    @Html.ActionLink("Passed Treatments", "PatientArchive", "Treatment", new { id = Model.UserId }, new { }) |
     @Html.ActionLink("Begin Treatment", "New", "Treatment", new { id = Model.UserId }, new { }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
