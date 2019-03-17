@@ -4,14 +4,12 @@
     ViewBag.Title = "New "+ViewBag.Role;
 }
 
-<h2>New @ViewBag.Role</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Create User First</h4>
+        <h4>Create User with @ViewBag.Role role</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -40,7 +38,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-outline-success" />
+                <input type="submit" value="Continue" class="btn btn-outline-success" />
             </div>
         </div>
     </div>
