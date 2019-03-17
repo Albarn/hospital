@@ -9,6 +9,7 @@ namespace Hospital.Models
     public class CreateTreatmentViewModel
     {
         [Required]
+        [Display(Name = "Doctor Full Name")]
         public string DoctorFullName { get; set; }
         [Required]
         [StringLength(30,MinimumLength = 5)]

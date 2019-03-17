@@ -28,7 +28,13 @@
 </div>
 <p>
     @Html.ActionLink("Active Treatments", "Patient", "Treatment", new { id = Model.UserId }, new { }) |
-    @Html.ActionLink("Passed Treatments", "PatientArchive", "Treatment", new { id = Model.UserId }, new { }) |
-    @Html.ActionLink("Begin Treatment", "New", "Treatment", new { id = Model.UserId }, new { }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Passed Treatments", "PatientArchive", "Treatment", new { id = Model.UserId }, new { })
+    @if (User.IsInRole("Admin"))
+    {
+        @:| @Html.ActionLink("Begin Treatment", "New", "Treatment", new { id = Model.UserId }, new { })
+    }
+    @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse"))
+    {
+        @:| @Html.ActionLink("Back to List", "Index")
+    }
 </p>

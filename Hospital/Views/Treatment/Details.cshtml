@@ -43,11 +43,15 @@
 <p>
     @if (User.IsInRole("Doctor"))
     {
-        @Html.ActionLink("Make Assignment", "New", "Assignment", new { id = Model.TreatmentId }, new { }) @:| 
+        @Html.ActionLink("Make Assignment", "New", "Assignment", new { id = Model.TreatmentId }, new { }) @:|
+        if (Model.FinishDate == null)
+        {
+            @Html.ActionLink("Finish", "Finish", "Treatment", new { id = Model.TreatmentId }, new { }) @:|
+        }
+        @Html.ActionLink("Back to List", "Doctor")
     }
-    @if (Model.FinishDate == null)
+    @if (User.IsInRole("Patient"))
     {
-        @Html.ActionLink("Finish","Finish","Treatment", new { id = Model.TreatmentId }, new { }) @:| 
+        @Html.ActionLink("Back to List", "Patient")
     }
-    @Html.ActionLink("Back to List", "Doctor")
 </p>
