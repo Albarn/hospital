@@ -14,7 +14,13 @@ namespace Hospital.Controllers
     public class AssignmentController : Controller
     {
         private IRepository<Assignment> assignments = new AssignmentRepository();
-        
+
+        public ActionResult Index()
+        {
+            string id = UserService.GetUserId();
+            return View(assignments.Get(a => a.FinishDate == null && (a.DoctorId == id || a.NurseId==id)));
+        }
+
         public ActionResult New(string id)
         {
             return View();
@@ -50,6 +56,16 @@ namespace Hospital.Controllers
 
             assignments.Add(assignment);
             return RedirectToAction("Details", "Treatment", new { id = id });
+        }
+
+        
+
+        [HttpPost]
+        public ActionResult Finish(string id)
+        {
+            var assignment = assignments.Find(id);
+            assignment.FinishDate = DateTime.Now;
+            return PartialView("EmptyPartial");
         }
     }
 }

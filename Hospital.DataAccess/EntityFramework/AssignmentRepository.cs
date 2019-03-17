@@ -1,6 +1,7 @@
 ﻿using Hospital.DataAccess.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace Hospital.DataAccess.EntityFramework
 
         public IEnumerable<Assignment> Get(Func<Assignment, bool> condition)
         {
-            return db.Assignments.Where(condition).ToList();
+            return db.Assignments.Include(a=>a.Treatment).Include(a=>a.Treatment.Patient).Where(condition).ToList();
         }
 
         public IEnumerable<Assignment> GetAll()
