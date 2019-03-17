@@ -12,6 +12,7 @@ namespace Hospital.Models
         [StringLength(30,MinimumLength = 8)]
         [RegularExpression("^([a-z|A-Z|']+)( ([a-z|A-Z|']+))*$",ErrorMessage ="Name is not correct.")]
         [Required]
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
         [Required]
         public Position Position { get; set; }
