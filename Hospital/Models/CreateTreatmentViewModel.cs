@@ -9,9 +9,9 @@ namespace Hospital.Models
     public class CreateTreatmentViewModel
     {
         [Required]
-        [StringLength(20,MinimumLength = 6)]
         public string DoctorFullName { get; set; }
         [Required]
+        [StringLength(30,MinimumLength = 5)]
         public string Complaint { get; set; }
     }
 }

@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Hospital.Controllers
 {
+    [Authorize]
     public class PatientController : Controller
     {
         private IRepository<Patient> patients = new PatientRepository();
@@ -58,14 +59,15 @@ namespace Hospital.Controllers
             UserService.FinishRegistration(id);
             return RedirectToAction("Index");
         }
-
-        [Authorize]
+        
         public ActionResult Details(string id)
         {
             if (User.IsInRole("Patient")) id = UserService.GetUserId();
             else if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
 
-            return View(patients.Find(id));
+            var patient = patients.Find(id);
+            if (patient == null) return HttpNotFound();
+            return View(patient);
         }
     }
 }

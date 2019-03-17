@@ -23,11 +23,9 @@ namespace Hospital.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(LoginViewModel model)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid) return View(model);
-
-            
 
             var loginResult = SignInManager.PasswordSignIn(model.UserName, model.Password, true, false);
             if (loginResult != SignInStatus.Success)
@@ -44,7 +42,7 @@ namespace Hospital.Controllers
                 ModelState.AddModelError("", "Registration is not completed.");
                 return View(model);
             }
-            return RedirectToAction("Index", "Home");
+            return Redirect(returnUrl);
         }
 
         public ActionResult Logout()

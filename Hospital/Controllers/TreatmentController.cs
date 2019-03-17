@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Hospital.Controllers
 {
+    [Authorize]
     public class TreatmentController : Controller
     {
         private IRepository<Treatment> treatments = new TreatmentRepository();
@@ -34,10 +35,9 @@ namespace Hospital.Controllers
             var doctor = doctors.Get(d=>d.FullName==model.DoctorFullName).SingleOrDefault();
             if (doctor == null)
             {
-                ModelState.AddModelError("DoctorFullName", "Doctor with that name doesn't exist.");
+                ModelState.AddModelError("DoctorFullName", "Doctor with this name doesn't exist.");
                 return View(model);
             }
-
             Treatment treatment = new Treatment()
             {
                 DoctorId = doctor.UserId,
@@ -48,10 +48,11 @@ namespace Hospital.Controllers
             treatments.Add(treatment);
             return RedirectToAction("Details", "Patient", new { id = id });
         }
-
+        
         public ActionResult Patient(string id)
         {
-            if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
+            if (User.IsInRole(Role.Patient.ToString())) id = UserService.GetUserId();
+            else if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
 
             return View(treatments
                 .Get(t => t.PatientId == id && t.FinishDate == null)
@@ -66,7 +67,7 @@ namespace Hospital.Controllers
 
         public ActionResult Doctor(string id)
         {
-            if (User.IsInRole(Role.Doctor.ToString())) id = UserService.GetUserId();
+            if (User.IsInRole(Role.Doctor.ToString()) && id == null) id = UserService.GetUserId();
             if (!UserService.IsUserInRole(id, Role.Doctor)) return HttpNotFound();
 
             return View(treatments
@@ -82,22 +83,39 @@ namespace Hospital.Controllers
 
         public ActionResult Details(string id)
         {
-            return View(treatments.Find(id));
+            var treatment = treatments.Find(id);
+            if (treatment == null) return HttpNotFound();
+
+            if (User.IsInRole(Role.Patient.ToString()) &&
+                treatment.PatientId != UserService.GetUserId())
+            {
+                return HttpNotFound();
+            }
+            return View(treatment);
         }
 
+        [Authorize(Roles="Doctor")]
         public ActionResult Finish(string id)
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Doctor")]
         public ActionResult Finish(string FinalDiagnosis, string id)
         {
             var treatment = treatments.Find(id);
+            if (treatment == null) return HttpNotFound();
+
+            if(FinalDiagnosis.Length<4 && FinalDiagnosis.Length > 30)
+            {
+                ModelState.AddModelError("", "Length of diagnosis must be between 4 and 30");
+            }
             treatment.FinalDiagnosis = FinalDiagnosis;
             treatment.FinishDate = DateTime.Now;
+
             treatments.Update(treatment);
-            return RedirectToAction("Doctor", new { id = UserService.GetUserId() });
+            return RedirectToAction("Doctor");
         }
     }
 }

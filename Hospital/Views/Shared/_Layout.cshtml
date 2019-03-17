@@ -18,7 +18,7 @@
                 @NavLink("Home", "Index", "Home")
                 @NavLink("Doctors", "Index", "Doctor")
                 @NavLink("Nurses", "Index", "Nurse")
-                @if (User.IsInRole("Admin") || User.IsInRole("Nurse"))
+                @if (User.IsInRole("Admin") || User.IsInRole("Nurse") || User.IsInRole("Doctor"))
                 {
                     @NavLink("Patients", "Index", "Patient")
                 }
