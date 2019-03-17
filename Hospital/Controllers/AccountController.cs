@@ -14,6 +14,7 @@ namespace Hospital.Controllers
     public class AccountController : Controller
     {
         private SignInManager<User, string> SignInManager => HttpContext.GetOwinContext().Get<SignInManager<User, string>>();
+
         [AllowAnonymous]
         public ActionResult Login()
         {
@@ -28,16 +29,16 @@ namespace Hospital.Controllers
 
             //check IsConfirmed property
             var user = SignInManager.UserManager.FindByName(model.UserName);
-            if (user!=null && user.IsConfirmed != true)
+            if (user != null && user.IsConfirmed != true)
             {
-                ModelState.AddModelError("", "Registration is not completed");
+                ModelState.AddModelError("", "Registration is not completed.");
                 return View(model);
             }
 
-            var loginResult=SignInManager.PasswordSignIn(model.UserName, model.Password, true, false);
+            var loginResult = SignInManager.PasswordSignIn(model.UserName, model.Password, true, false);
             if (loginResult != SignInStatus.Success)
             {
-                ModelState.AddModelError("", "Invalid login attempt");
+                ModelState.AddModelError("", "Invalid login attempt.");
                 return View(model);
             }
             return RedirectToAction("Index", "Home");
@@ -52,15 +53,23 @@ namespace Hospital.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Register(Role role)
         {
+            if (role == Role.Admin) return HttpNotFound();
             ViewBag.Role = role.ToString();
             return View();
         }
 
         //create user and redirect Admin to next registration form
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Register(RegisterViewModel model, Role role)
         {
+            if (role == Role.Admin) return HttpNotFound();
             if (!ModelState.IsValid) return View(model);
+            if (SignInManager.UserManager.FindByName(model.UserName) != null)
+            {
+                ModelState.AddModelError("", "This User Name is not available.");
+                return View(model);
+            }
             var user = new User()
             {
                 UserName = model.UserName,
