@@ -10,9 +10,30 @@
             @if (User.IsInRole("Admin"))
             {
                 <p class="card-text">
+                    View all doctors.
                     Sort by name, position, number of patients.
-                    Register new, attach patient to the doctor.
-                    Make patient assignment.
+                    Register new.
+                </p>
+                @BtnLink("See the list", "Index", "Doctor")
+            }
+            else if (User.IsInRole("Doctor"))
+            {
+                <p class="card-text">
+                    See the list of all doctors.
+                    Sort by name, position, number of patients.
+                    Manage your treatments, execute your assignments.
+                </p>
+                <div class="btn-group">
+                    @BtnLink("See the list", "Index", "Doctor")
+                    @BtnLink("My Treatments", "Doctor", "Treatment")
+                    @BtnLink("My Assignments", "Index", "Assignment")
+                </div>
+            }
+            else
+            {
+                <p class="card-text">
+                    View all doctors.
+                    Sort by name, position, number of patients.
                 </p>
                 @BtnLink("See the list", "Index", "Doctor")
             }
@@ -30,7 +51,24 @@
                 </p>
                 @BtnLink("See the list", "Index", "Nurse")
             }
-
+            else if (User.IsInRole("Nurse"))
+            {
+                <p class="card-text">
+                    See the list of all nurses.
+                    Execute your assignments.
+                </p>
+                <div class="btn-group">
+                    @BtnLink("See the list", "Index", "Nurse")
+                    @BtnLink("My Assignments", "Index", "Assignment")
+                </div>
+            }
+            else
+            {
+                <p class="card-text">
+                    See the list of all nurses.
+                </p>
+                @BtnLink("See the list", "Index", "Nurse")
+            }
         </div>
     </div>
     <div class="card bg-light">
@@ -41,12 +79,33 @@
             {
                 <p class="card-text">
                     Sort by name, date of birth.
-                    Register new, attach patient to the doctor.
-                    Make patient assignment.
+                    Register new. Start patients treatment.
+                    View patients treatments and assignments.
                 </p>
                 @BtnLink("See the list", "Index", "Patient")
             }
-
+            else if (User.IsInRole("Doctor") || User.IsInRole("Nurse"))
+            {
+                <p class="card-text">
+                    View all patients. Sort by name, date of birth.
+                    View their treatments.
+                </p>
+                @BtnLink("See the list", "Index", "Patient")
+            }
+            else if (User.IsInRole("Patient"))
+            {
+                <p class="card-text">
+                    View your treatments and assignments.
+                </p>
+                @BtnLink("My Treatments", "Patient", "Treatment")
+            }
+            else
+            {
+                <p class="card-text">
+                    Authorize to manage patients.
+                </p>
+                @BtnLink("Login","Login","Account")
+            }
         </div>
     </div>
 </div>

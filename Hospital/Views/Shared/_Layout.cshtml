@@ -31,6 +31,10 @@
                 {
                     @NavLink("Assignments", "Index", "Assignment")
                 }
+                @if (User.IsInRole("Patient"))
+                {
+                    @NavLink("Treatments","Patient","Treatment")
+                }
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Identity.IsAuthenticated)
