@@ -23,6 +23,7 @@ namespace Hospital.Controllers
             return View(nurses.GetAll().OrderBy(d => d.FullName));
         }
 
+        [Authorize(Roles="Admin")]
         public ActionResult New(string id)
         {
             if (!UserService.IsUserInRole(id, Role.Nurse)) return HttpNotFound();
@@ -31,6 +32,7 @@ namespace Hospital.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles ="Admin")]
         public ActionResult New(CreateNurseViewModel model, string id)
         {
             if (!UserService.IsUserInRole(id, Role.Nurse)) return HttpNotFound();

@@ -7,7 +7,7 @@ namespace Hospital.DataAccess.Models
     public enum Role
     {
         Admin =     0b0000_0001,
-        Doctor =    0b0000_0110,
+        Doctor =    0b0000_0010,
         Nurse =     0b0000_0100,
         Patient =   0b0000_1000
     }

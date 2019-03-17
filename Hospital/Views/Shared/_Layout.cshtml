@@ -25,6 +25,7 @@
                 @if (User.IsInRole("Doctor"))
                 {
                     @NavLink("Treatments", "Doctor", "Treatment")
+                    @NavLink("Assignments", "Index", "Assignment")
                 }
                 @if (User.IsInRole("Nurse"))
                 {
