@@ -44,6 +44,7 @@ namespace Hospital.Controllers
                 UserId = id
             };
             nurses.Add(nurse);
+            UserService.FinishRegistration(id);
             return RedirectToAction("Index");
         }
     }

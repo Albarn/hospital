@@ -27,18 +27,21 @@ namespace Hospital.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            //check IsConfirmed property
-            var user = SignInManager.UserManager.FindByName(model.UserName);
-            if (user != null && user.IsConfirmed != true)
-            {
-                ModelState.AddModelError("", "Registration is not completed.");
-                return View(model);
-            }
+            
 
             var loginResult = SignInManager.PasswordSignIn(model.UserName, model.Password, true, false);
             if (loginResult != SignInStatus.Success)
             {
                 ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
+            }
+            
+            //check IsConfirmed property
+            var user = SignInManager.UserManager.FindByName(model.UserName);
+            if (user != null && user.IsConfirmed != true)
+            {
+                SignInManager.AuthenticationManager.SignOut();
+                ModelState.AddModelError("", "Registration is not completed.");
                 return View(model);
             }
             return RedirectToAction("Index", "Home");

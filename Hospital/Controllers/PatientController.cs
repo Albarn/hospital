@@ -18,6 +18,7 @@ namespace Hospital.Controllers
         private IRepository<Patient> patients = new PatientRepository();
 
         // GET: Patient
+        [Authorize(Roles = "Admin, Doctor, Nurse")]
         public ActionResult Index()
         {
             return View(patients.GetAll());
@@ -43,7 +44,7 @@ namespace Hospital.Controllers
                 maxDate = DateTime.Now.AddYears(-5);
             if (model.BirthDate<minDate || model.BirthDate > maxDate)
             {
-                ModelState.AddModelError("BirthDate", "Invalid Birth Date");
+                ModelState.AddModelError("BirthDate", "Invalid Birth Date, patient must be from 5 to 18 years old.");
                 return View(model);
             }
 
@@ -54,12 +55,15 @@ namespace Hospital.Controllers
                 UserId = id
             };
             patients.Add(patient);
+            UserService.FinishRegistration(id);
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public ActionResult Details(string id)
         {
-            if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
+            if (User.IsInRole("Patient")) id = UserService.GetUserId();
+            else if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
 
             return View(patients.Find(id));
         }

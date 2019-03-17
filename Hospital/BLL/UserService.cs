@@ -29,5 +29,17 @@ namespace Hospital.BLL
                 .FindByName(HttpContext.Current.User.Identity.Name)
                 ?.Id;
         }
+
+        public static void FinishRegistration(string id)
+        {
+            var manager = HttpContext
+                .Current
+                .GetOwinContext()
+                .Get<UserManager<User>>();
+
+            var user = manager.FindById(id);
+            user.IsConfirmed = true;
+            manager.Update(user);
+        }
     }
 }

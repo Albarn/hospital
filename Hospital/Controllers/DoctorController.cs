@@ -54,6 +54,7 @@ namespace Hospital.Controllers
                 Position = model.Position
             };
             doctors.Add(doctor);
+            UserService.FinishRegistration(id);
             return RedirectToAction("Index");
         }
     }

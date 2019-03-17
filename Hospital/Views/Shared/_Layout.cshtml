@@ -35,7 +35,22 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li class="nav-link">Hi @User.Identity.Name!</li>
+                    if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-link">Hi @User.Identity.Name!</li>
+                    }
+                    else if (User.IsInRole("Doctor"))
+                    {
+                        @NavLink($"Hi {User.Identity.Name}!", "Details", "Doctor")
+                    }
+                    else if (User.IsInRole("Nurse"))
+                    {
+                        @NavLink($"Hi {User.Identity.Name}!", "Details", "Nurse")
+                    }
+                    else if (User.IsInRole("Patient"))
+                    {
+                        @NavLink($"Hi {User.Identity.Name}!", "Details", "Patient")
+                    }
                     @NavLink("Logout", "Logout", "Account")
                 }
                 else
