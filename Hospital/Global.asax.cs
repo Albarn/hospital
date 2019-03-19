@@ -20,8 +20,11 @@ namespace Hospital
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            //inject dependencies
             NinjectModule registrations = new NinjectRegistrations();
             StandardKernel kernel = new StandardKernel(registrations);
+
+            //undo ninject model validation override
             kernel.Unbind<ModelValidatorProvider>();
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }

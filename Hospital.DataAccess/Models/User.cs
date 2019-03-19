@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace Hospital.DataAccess.Models
 {
+    /// <summary>
+    /// User Role
+    /// </summary>
     public enum Role
     {
         Admin =     0b0000_0001,

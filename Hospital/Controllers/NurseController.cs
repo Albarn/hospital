@@ -5,6 +5,7 @@ using Hospital.Filters;
 using Hospital.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +19,18 @@ namespace Hospital.Controllers
     public class NurseController : Controller
     {
         private IRepository<Nurse> nurses;
+        private Logger logger;
 
         public NurseController(IRepository<Nurse> nurses)
         {
             this.nurses = nurses;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
-        // GET: Nurse
+        /// <summary>
+        /// gets list of nurses
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View(nurses.GetAll().OrderBy(d => d.FullName));
@@ -32,16 +38,32 @@ namespace Hospital.Controllers
 
         public ActionResult Details(string id)
         {
-            if (id == null && User.IsInRole(Role.Nurse.ToString())) id = UserService.GetUserId();
+            if (id == null && User.IsInRole(Role.Nurse.ToString()))
+            {
+                logger.Info("nurse goes to their page");
+                id = UserService.GetUserId();
+            }
+
             Nurse nurse = nurses.Find(id);
-            if (nurse == null) return HttpNotFound();
+            if (nurse == null)
+            {
+                logger.Info("nurse not found, returning 404");
+                return HttpNotFound();
+            }
             else return View(nurse);
         }
 
+        /// <summary>
+        /// create nurse with given user
+        /// </summary>
         [Authorize(Roles="Admin")]
         public ActionResult New(string id)
         {
-            if (!UserService.IsUserInRole(id, Role.Nurse)) return HttpNotFound();
+            if (!UserService.IsUserInRole(id, Role.Nurse))
+            {
+                logger.Info("attempt to attach nurse to user with another role, returning 404");
+                return HttpNotFound();
+            }
 
             return View();
         }
@@ -50,8 +72,16 @@ namespace Hospital.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult New(CreateNurseViewModel model, string id)
         {
-            if (!UserService.IsUserInRole(id, Role.Nurse)) return HttpNotFound();
-            if (!ModelState.IsValid) return View(model);
+            if (!UserService.IsUserInRole(id, Role.Nurse))
+            {
+                logger.Info("attempt to attach nurse to user with another role, returning 404");
+                return HttpNotFound();
+            }
+            if (!ModelState.IsValid)
+            {
+                logger.Info("model isn't valid, returning back");
+                return View(model);
+            }
 
             var nurse = new Nurse()
             {

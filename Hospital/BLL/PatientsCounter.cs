@@ -1,5 +1,6 @@
 ﻿using Hospital.DataAccess.Models;
 using Hospital.Models;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,18 @@ namespace Hospital.BLL
 {
     public class PatientsCounter
     {
+        /// <summary>
+        /// calculates number of doctors' patients and set it to DoctorItemViewModel's property
+        /// </summary>
+        /// <param name="doctors"></param>
+        /// <param name="treatments"></param>
+        /// <returns></returns>
         public static List<DoctorItemViewModel> CalculatePatientsNumber(
             IEnumerable<Doctor> doctors,IEnumerable<Treatment> treatments)
         {
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Info("Counting patients number");
+
             //maps doctor ids to set of patients
             Dictionary<string, HashSet<string>> doctorPatients = new Dictionary<string, HashSet<string>>();
 

@@ -22,6 +22,10 @@ namespace Hospital.DataAccess.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
+
+        /// <summary>
+        /// complaint that patient came to doctor with
+        /// </summary>
         [Required]
         public string Complaint { get; set; }
 

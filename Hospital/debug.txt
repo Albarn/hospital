@@ -1473,3 +1473,180 @@
 2019-03-19 23:18:46.5527|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating treatments
 2019-03-19 23:18:46.5527|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating assignments
 2019-03-19 23:18:46.5937|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|saving changes to the context
+2019-03-20 00:53:03.3053|INFO|Hospital.NinjectRegistrations|inject dependencies
+2019-03-20 00:53:03.5591|INFO|Hospital.Startup|configuring autentification
+2019-03-20 00:53:35.9226|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/
+2019-03-20 00:53:51.5859|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor
+2019-03-20 00:53:52.1723|INFO|Hospital.BLL.PatientsCounter|Counting patients number
+2019-03-20 00:53:57.2491|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor/Categorized
+2019-03-20 00:53:57.2581|INFO|Hospital.BLL.PatientsCounter|Counting patients number
+2019-03-20 00:54:00.4378|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor/Details/3232063f-774a-4820-ae42-2cd677834b14
+2019-03-20 00:54:03.4563|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Account/Login
+2019-03-20 00:54:13.6979|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Login
+2019-03-20 00:54:14.0877|INFO|Hospital.Controllers.AccountController|login succeded
+2019-03-20 00:54:14.1317|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/
+2019-03-20 00:54:18.5450|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor
+2019-03-20 00:54:18.5520|INFO|Hospital.BLL.PatientsCounter|Counting patients number
+2019-03-20 00:54:20.1778|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Account/Register?role=2
+2019-03-20 00:54:22.0809|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Register?role=2
+2019-03-20 00:54:22.0809|INFO|Hospital.Controllers.AccountController|model state not valid, returning back
+2019-03-20 00:54:33.6723|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Register?role=2
+2019-03-20 00:54:33.6893|INFO|Hospital.Controllers.AccountController|name is not available, returning back
+2019-03-20 00:54:46.8722|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Register?role=2
+2019-03-20 00:54:47.4025|INFO|Hospital.Controllers.AccountController|user with role created, continue registration
+2019-03-20 00:54:47.4275|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor/New/6c9118f7-ed47-4cdf-8435-d9f38c05afae
+2019-03-20 00:54:47.4275|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 00:54:50.7731|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Doctor/New/6c9118f7-ed47-4cdf-8435-d9f38c05afae
+2019-03-20 00:54:50.7731|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 00:54:50.7841|INFO|Hospital.Controllers.DoctorController|model is not valid, returning back
+2019-03-20 00:55:13.0144|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Doctor/New/6c9118f7-ed47-4cdf-8435-d9f38c05afae
+2019-03-20 00:55:13.0194|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 00:55:13.1693|INFO|Hospital.BLL.UserService|setting user confirmed
+2019-03-20 00:55:13.2422|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor
+2019-03-20 00:55:13.2602|INFO|Hospital.BLL.PatientsCounter|Counting patients number
+2019-03-20 00:55:16.3352|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor/Details/6c9118f7-ed47-4cdf-8435-d9f38c05afae
+2019-03-20 00:55:18.2177|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Doctor/6c9118f7-ed47-4cdf-8435-d9f38c05afae
+2019-03-20 00:55:18.2227|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 00:55:20.6833|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor/Details
+2019-03-20 00:55:20.6833|INFO|Hospital.Controllers.DoctorController|attempt to get doctor without id, returning 404
+2019-03-20 00:57:54.6995|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Doctor/6c9118f7-ed47-4cdf-8435-d9f38c05afae
+2019-03-20 00:57:54.7025|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 00:58:13.0494|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor
+2019-03-20 00:58:13.0694|INFO|Hospital.BLL.PatientsCounter|Counting patients number
+2019-03-20 00:58:15.1443|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Nurse
+2019-03-20 00:58:17.7603|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Account/Register?role=4
+2019-03-20 00:58:19.5684|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Register?role=4
+2019-03-20 00:58:19.5684|INFO|Hospital.Controllers.AccountController|model state not valid, returning back
+2019-03-20 00:58:29.8805|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Register?role=4
+2019-03-20 00:58:29.8975|INFO|Hospital.Controllers.AccountController|name is not available, returning back
+2019-03-20 00:58:39.6613|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Register?role=4
+2019-03-20 00:58:39.7412|INFO|Hospital.Controllers.AccountController|user with role created, continue registration
+2019-03-20 00:58:39.7642|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Nurse/New/f9f50a01-31c3-4dca-82f9-f42c1e5fe99f
+2019-03-20 00:58:39.7702|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 00:58:56.7215|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Nurse/New/f9f50a01-31c3-4dca-82f9-f42c1e5fe99f
+2019-03-20 00:58:56.7215|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 00:58:56.7715|INFO|Hospital.BLL.UserService|setting user confirmed
+2019-03-20 00:58:56.8005|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Nurse
+2019-03-20 00:58:59.6126|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Nurse/Details/f9f50a01-31c3-4dca-82f9-f42c1e5fe99f
+2019-03-20 00:59:07.2797|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Patient
+2019-03-20 00:59:09.9090|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Account/Register?role=8
+2019-03-20 00:59:39.6096|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Register?role=8
+2019-03-20 00:59:39.6096|INFO|Hospital.Controllers.AccountController|name is not available, returning back
+2019-03-20 01:00:02.0657|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Register?role=8
+2019-03-20 01:00:02.1476|INFO|Hospital.Controllers.AccountController|user with role created, continue registration
+2019-03-20 01:00:02.1676|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Patient/New/9d765693-f1f4-450f-8879-1199755a88d9
+2019-03-20 01:00:02.1726|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:00:13.3520|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Patient/New/9d765693-f1f4-450f-8879-1199755a88d9
+2019-03-20 01:00:13.3520|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:00:13.3640|INFO|Hospital.Controllers.PatientController|user gave illegal patient age, returning back
+2019-03-20 01:00:23.1028|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Patient/New/9d765693-f1f4-450f-8879-1199755a88d9
+2019-03-20 01:00:23.1028|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:00:23.1787|INFO|Hospital.BLL.UserService|setting user confirmed
+2019-03-20 01:00:23.2187|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Patient
+2019-03-20 01:00:27.1098|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Patient/Details/9d765693-f1f4-450f-8879-1199755a88d9
+2019-03-20 01:00:31.1010|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/New/9d765693-f1f4-450f-8879-1199755a88d9
+2019-03-20 01:00:31.1010|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:00:42.6400|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Treatment/New/9d765693-f1f4-450f-8879-1199755a88d9
+2019-03-20 01:00:42.6400|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:00:42.7729|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Patient/Details/9d765693-f1f4-450f-8879-1199755a88d9
+2019-03-20 01:00:44.6719|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Patient/9d765693-f1f4-450f-8879-1199755a88d9
+2019-03-20 01:00:44.6719|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:00:46.4288|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Details/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:00:46.5837|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:00:46.7486|INFO|Hospital.Filters.ExceptionHandlerAttribute|Unexpected "if" keyword after "@" character.  Once inside code, you do not need to prefix constructs like "if" with "@".
+/   at System.Web.WebPages.Razor.RazorBuildProvider.EnsureGeneratedCode()
+   at System.Web.WebPages.Razor.RazorBuildProvider.get_CodeCompilerType()
+   at System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetCompiledType(String virtualPath)
+   at System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.GetCompiledType(String virtualPath)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__3()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__5(IAsyncResult asyncResult)
+2019-03-20 01:02:24.0692|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Details/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:02:24.0901|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:02:30.3493|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Account/Logout
+2019-03-20 01:02:30.3493|INFO|Hospital.Controllers.AccountController|sigining out
+2019-03-20 01:02:30.3823|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/
+2019-03-20 01:02:31.7395|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Account/Login
+2019-03-20 01:02:43.9307|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Account/Login
+2019-03-20 01:02:43.9896|INFO|Hospital.Controllers.AccountController|login succeded
+2019-03-20 01:02:44.0166|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/
+2019-03-20 01:02:49.2744|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Doctor
+2019-03-20 01:02:49.2744|INFO|Hospital.Controllers.TreatmentController|doctor goes to their treatments
+2019-03-20 01:02:49.2744|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:02:49.2904|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:02:52.3848|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Details/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:02:52.4078|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:02:52.4078|INFO|Hospital.Controllers.TreatmentController|doctor has permission to modify treatment
+2019-03-20 01:02:55.5654|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Assignment/New/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:02:55.5934|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:03:21.4133|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Assignment/New/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:03:21.4373|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:03:21.5412|INFO|Hospital.Controllers.AssignmentController|assignment created
+2019-03-20 01:03:21.5632|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Details/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:03:21.5632|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:03:21.5632|INFO|Hospital.Controllers.TreatmentController|doctor has permission to modify treatment
+2019-03-20 01:03:24.5866|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Assignment/New/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:03:24.5976|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:03:53.5353|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Assignment/New/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:03:53.5523|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:03:53.5523|INFO|Hospital.Controllers.AssignmentController|attempt to assign nurse to operation
+2019-03-20 01:04:01.0747|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Assignment/New/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:04:01.0877|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:01.1267|INFO|Hospital.Controllers.AssignmentController|assignment created
+2019-03-20 01:04:01.1486|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Details/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:04:01.1596|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:01.1596|INFO|Hospital.Controllers.TreatmentController|doctor has permission to modify treatment
+2019-03-20 01:04:08.3109|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Assignment/Details/1e3ec5d8-f5ed-410e-89ba-15c217b20d3d
+2019-03-20 01:04:14.5283|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Details/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:04:14.5413|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:14.5463|INFO|Hospital.Controllers.TreatmentController|doctor has permission to modify treatment
+2019-03-20 01:04:28.9727|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Assignment
+2019-03-20 01:04:28.9727|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:33.5429|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Assignment/Finish/d0d61a48-8dc4-41d9-b69f-224bd92c7bd1
+2019-03-20 01:04:33.5589|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:33.5879|INFO|Hospital.Controllers.AssignmentController|assignment finished
+2019-03-20 01:04:36.3243|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Doctor
+2019-03-20 01:04:36.3243|INFO|Hospital.Controllers.TreatmentController|doctor goes to their treatments
+2019-03-20 01:04:36.3333|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:36.3333|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:04:38.4763|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Assignment
+2019-03-20 01:04:38.4763|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:40.3046|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor/Details
+2019-03-20 01:04:40.3046|INFO|Hospital.Controllers.DoctorController|doctor goes to their profile page
+2019-03-20 01:04:40.3046|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:42.1163|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/DoctorArchive/e6c0f1b9-6024-4865-b4d9-fd3665783edd
+2019-03-20 01:04:42.1163|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:04:44.9285|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Assignment/AssignedArchive/e6c0f1b9-6024-4865-b4d9-fd3665783edd
+2019-03-20 01:04:46.6694|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Details/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:04:46.6824|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:46.6824|INFO|Hospital.Controllers.TreatmentController|doctor has permission to modify treatment
+2019-03-20 01:04:50.5420|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Finish/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:04:50.5550|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:58.0230|INFO|Hospital.Filters.RequestLoggerAttribute|POST/http://localhost:51558/Treatment/Finish/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:04:58.0370|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:58.0900|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Doctor
+2019-03-20 01:04:58.0900|INFO|Hospital.Controllers.TreatmentController|doctor goes to their treatments
+2019-03-20 01:04:58.0970|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:04:58.0970|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:05:02.2353|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor/Details
+2019-03-20 01:05:02.2353|INFO|Hospital.Controllers.DoctorController|doctor goes to their profile page
+2019-03-20 01:05:02.2353|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:05:03.8913|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/DoctorArchive/e6c0f1b9-6024-4865-b4d9-fd3665783edd
+2019-03-20 01:05:03.8913|INFO|Hospital.BLL.UserService|checking user role
+2019-03-20 01:05:05.6630|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Treatment/Details/d2a329c7-0a56-4e94-af7b-8043d25c6206
+2019-03-20 01:05:05.6630|INFO|Hospital.BLL.UserService|getting current user id
+2019-03-20 01:05:05.6760|INFO|Hospital.Controllers.TreatmentController|doctor has permission to modify treatment
+2019-03-20 01:05:12.4283|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Assignment/Details/d0d61a48-8dc4-41d9-b69f-224bd92c7bd1

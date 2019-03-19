@@ -64,6 +64,8 @@ namespace Hospital.DataAccess.EntityFramework
                 new User() { UserName = "pobby_p", Roles = (int)Role.Patient, IsConfirmed = true }
             };
 
+            //register users
+            log.Info("registring users");
             string pass = "debug0";
             foreach (var u in doctors.Concat(nurses).Concat(patients))
             {

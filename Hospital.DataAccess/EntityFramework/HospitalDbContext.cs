@@ -20,6 +20,7 @@ namespace Hospital.DataAccess.EntityFramework
         public IDbSet<Treatment> Treatments { get; set; }
         public IDbSet<Assignment> Assignments { get; set; }
 
+        //for single instance support
         private static HospitalDbContext instance;
         public static HospitalDbContext Create()
         {
@@ -29,6 +30,7 @@ namespace Hospital.DataAccess.EntityFramework
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //user can be doctor or nurse or patient
             modelBuilder.Entity<User>()
                 .HasOptional(u => u.Doctor)
                 .WithRequired(d => d.User);
@@ -46,16 +48,19 @@ namespace Hospital.DataAccess.EntityFramework
                 .WithRequired(t => t.Doctor)
                 .HasForeignKey(t => t.DoctorId);
 
+            //patient has many treatments
             modelBuilder.Entity<Patient>()
                 .HasMany(d => d.Treatments)
                 .WithRequired(t => t.Patient)
                 .HasForeignKey(t => t.PatientId);
 
+            //treatments have many assignments
             modelBuilder.Entity<Treatment>()
                 .HasMany(t => t.Assignments)
                 .WithRequired(t => t.Treatment)
                 .HasForeignKey(t => t.TreatmentId);
 
+            //doctor or nurse can be assigned
             modelBuilder.Entity<Doctor>()
                 .HasMany(d => d.Assignments)
                 .WithOptional(a => a.Doctor)
