@@ -59,16 +59,20 @@ namespace Hospital.Controllers
             if (User.IsInRole(Role.Patient.ToString())) id = UserService.GetUserId();
             else if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
 
-            return View(treatments
-                .Get(t => t.PatientId == id && t.FinishDate == null)
-                .Select(t => new TreatmentItemViewModel()
-                {
-                    Diagnosis = t.Complaint,
-                    DoctorId = t.DoctorId,
-                    StartDate = t.StartDate,
-                    TreatmentId = t.TreatmentId
-                }));
+            ViewBag.Header = "Patient's Active Treatments";
+            return View(SelectActiveTreatmentsItems(t => t.PatientId == id));
         }
+
+        public ActionResult PatientArchive(string id)
+        {
+            if (User.IsInRole(Role.Patient.ToString())) id = UserService.GetUserId();
+            else if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
+
+            ViewBag.Header = "Patient's Finished Treatments";
+            return View("Patient",SelectFinishedTreatmentsItems(t => t.PatientId == id));
+        }
+
+        
 
         [Authorize(Roles ="Admin, Doctor, Nurse")]
         public ActionResult Doctor(string id)
@@ -76,15 +80,18 @@ namespace Hospital.Controllers
             if (User.IsInRole(Role.Doctor.ToString()) && id == null) id = UserService.GetUserId();
             if (!UserService.IsUserInRole(id, Role.Doctor)) return HttpNotFound();
 
-            return View(treatments
-                .Get(t => t.DoctorId == id && t.FinishDate == null)
-                .Select(t => new TreatmentItemViewModel()
-                {
-                    Diagnosis = t.Complaint,
-                    PatientId = t.PatientId,
-                    StartDate = t.StartDate,
-                    TreatmentId = t.TreatmentId
-                }));
+            ViewBag.Header = "Doctor's Active Treatments";
+            return View(SelectActiveTreatmentsItems(t=>t.DoctorId==id));
+        }
+
+        [Authorize(Roles = "Admin, Doctor, Nurse")]
+        public ActionResult DoctorArchive(string id)
+        {
+            if (User.IsInRole(Role.Doctor.ToString()) && id == null) id = UserService.GetUserId();
+            if (!UserService.IsUserInRole(id, Role.Doctor)) return HttpNotFound();
+
+            ViewBag.Header = "Doctor's Finished Treatments";
+            return View("Doctor",SelectFinishedTreatmentsItems(t=>t.DoctorId==id));
         }
 
         public ActionResult Details(string id)
@@ -123,5 +130,33 @@ namespace Hospital.Controllers
             treatments.Update(treatment);
             return RedirectToAction("Doctor");
         }
+
+        #region helpers
+
+        IEnumerable<TreatmentItemViewModel> SelectTreatmentsItems(Predicate<Treatment> condition)
+        {
+            return treatments
+                .Get(t => condition(t))
+                .Select(t => new TreatmentItemViewModel()
+                {
+                    Diagnosis = t.Complaint,
+                    PatientId = t.PatientId,
+                    DoctorId = t.DoctorId,
+                    StartDate = t.StartDate,
+                    TreatmentId = t.TreatmentId
+                });
+        }
+
+        IEnumerable<TreatmentItemViewModel> SelectActiveTreatmentsItems(Predicate<Treatment> condition)
+        {
+            return SelectTreatmentsItems(t => t.FinishDate == null && condition(t));
+        }
+
+        IEnumerable<TreatmentItemViewModel> SelectFinishedTreatmentsItems(Predicate<Treatment> condition)
+        {
+            return SelectTreatmentsItems(t => t.FinishDate != null && condition(t));
+        }
+
+        #endregion
     }
 }

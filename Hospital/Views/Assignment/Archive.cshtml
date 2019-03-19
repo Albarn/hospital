@@ -3,7 +3,7 @@
     ViewBag.Title = "Assignments";
 }
 
-<h4>Assignments</h4>
+<h4>Finished Assignments</h4>
 <hr />
 <div class="list-group">
     @foreach (var a in Model)
@@ -11,7 +11,7 @@
     <div id="@a.AssignmentId">
         <div class="list-group-item">
             @a.AssignmentDate.ToShortDateString() / [@a.Type] 
-            @Html.ActionLink(a.Treatment.Patient.FullName,"Details","Patient",new { id = a.Treatment.PatientId },new { }) <br />
+            @Html.ActionLink(a.Treatment.Patient.FullName,"Details","Treatment",new { id = a.TreatmentId },new { }) <br />
             Instruction:
             <p>
                 @a.Instruction

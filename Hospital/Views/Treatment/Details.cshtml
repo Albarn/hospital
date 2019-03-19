@@ -35,7 +35,7 @@
             }
             else
             {
-                @:Finished on @Model.FinishDate with @Model.FinalDiagnosis
+                @:Finished on @Model.FinishDate.Value.ToShortDateString() with @Model.FinalDiagnosis
             }
         </dd>
     </dl>

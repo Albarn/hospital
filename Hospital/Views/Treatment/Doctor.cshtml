@@ -3,15 +3,15 @@
     ViewBag.Title = "Treatments";
 }
 
-<h4>Doctor Treatments</h4>
-
+<h4>@ViewBag.Header</h4><br />
+@Html.ActionLink("Doctor","Details","Doctor",new { id = Request.Params["id"] },new { })
 <ul class="list-group">
     @foreach(var t in Model)
     {
     <li class="list-group-item">
         @t.StartDate.ToShortDateString() / 
         <span class="fixed-size">@Html.ActionLink(t.Diagnosis, "Details", new { id = t.TreatmentId })</span> | 
-        @Html.ActionLink("Patient","Details","Patient",new { id = t.PatientId }, new { })
+        @Html.ActionLink($"Patient","Details","Patient",new { id = t.PatientId }, new { })
     </li>
     }
 </ul>

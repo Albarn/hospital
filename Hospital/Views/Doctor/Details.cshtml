@@ -18,7 +18,7 @@
     @if(User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse"))
     {  
     @Html.ActionLink("Active Treatments", "Doctor","Treatment", new { id = Model.UserId }, new { }) @:|
-    @Html.ActionLink("Finished Treatments", "Doctor","Treatment", new { id = Model.UserId }, new { }) @:|
+    @Html.ActionLink("Finished Treatments", "DoctorArchive","Treatment", new { id = Model.UserId }, new { }) @:|
     @Html.ActionLink("Active Assignments", "Assigned","Assignment", new { id = Model.UserId }, new { }) @:|
     @Html.ActionLink("Finished Assignments", "AssignedArchive","Assignment", new { id = Model.UserId }, new { }) @:|
     }

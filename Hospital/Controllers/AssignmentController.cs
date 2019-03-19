@@ -15,11 +15,19 @@ namespace Hospital.Controllers
     {
         private IRepository<Assignment> assignments;
         private IRepository<Treatment> treatments;
+        private IRepository<Doctor> doctors;
+        private IRepository<Nurse> nurses;
 
-        public AssignmentController(IRepository<Assignment> assignments, IRepository<Treatment> treatments)
+        public AssignmentController(
+            IRepository<Assignment> assignments, 
+            IRepository<Treatment> treatments, 
+            IRepository<Doctor> doctors, 
+            IRepository<Nurse> nurses)
         {
             this.assignments = assignments;
             this.treatments = treatments;
+            this.doctors = doctors;
+            this.nurses = nurses;
         }
 
         [Authorize(Roles = "Doctor, Nurse")]
@@ -109,13 +117,13 @@ namespace Hospital.Controllers
 
             if (model.IsDoctor)
             {
-                var assigned = UserService.GetUserByName(model.AssignedFullName);
-                if (assigned==null || !assigned.IsInRole(Role.Doctor))
+                var assigned = doctors.Get(d=>d.FullName==model.AssignedFullName).SingleOrDefault();
+                if (assigned==null)
                 {
                     ModelState.AddModelError("AssignedFullName", "Doctor with this name doesn't exist.");
                     return View(model);
                 }
-                assignment.DoctorId = assigned.Id;
+                assignment.DoctorId = assigned.UserId;
             }
             else
             {
@@ -124,13 +132,13 @@ namespace Hospital.Controllers
                     ModelState.AddModelError("Type", "Nurse cannot be assigned to operation.");
                     return View(model);
                 }
-                var assigned = UserService.GetUserByName(model.AssignedFullName);
-                if (assigned == null || !assigned.IsInRole(Role.Doctor))
+                var assigned = nurses.Get(n => n.FullName == model.AssignedFullName).SingleOrDefault();
+                if (assigned == null)
                 {
                     ModelState.AddModelError("AssignedFullName", "Nurse with this name doesn't exist.");
                     return View(model);
                 }
-                assignment.NurseId = assigned.Id;
+                assignment.NurseId = assigned.UserId;
             }
 
             assignments.Add(assignment);

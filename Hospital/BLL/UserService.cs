@@ -30,15 +30,6 @@ namespace Hospital.BLL
                 ?.Id;
         }
 
-        public static User GetUserByName(string name)
-        {
-            return HttpContext
-                .Current
-                .GetOwinContext()
-                .Get<UserManager<User>>()
-                .FindByName(name);
-        }
-
         public static void SetUserConfirmed(string id)
         {
             var manager = HttpContext
