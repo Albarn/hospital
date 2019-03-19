@@ -1,0 +1,50 @@
+﻿@model Hospital.DataAccess.Models.Assignment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Assignment Details</h4>
+    @Html.ActionLink("Treatment", "Details", "Treatment", new { id = Model.TreatmentId }, new { })
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Patient:</dt>
+        <dd>@Html.ActionLink(Model.Treatment.Patient.FullName, "Details", "Patient", new { id = Model.Treatment.PatientId }, new { })</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Diagnosis):</dt>
+        <dd>@Html.DisplayFor(model => model.Diagnosis)</dd>
+
+        @if (Model.Doctor == null)
+        {
+            <dt>Assigned nurse:</dt>
+            <dd>@Html.ActionLink(Model.Nurse.FullName, "Details", "Nurse", new { id = Model.NurseId }, new { })</dd>
+        }
+        else
+        {
+            <dt>Assigned doctor:</dt>
+            <dd>@Html.ActionLink(Model.Doctor.FullName, "Details", "Doctor", new { id = Model.DoctorId }, new { })</dd>
+        }
+
+        <dt>@Html.DisplayNameFor(model => model.AssignmentDate):</dt>
+        <dd>@Html.DisplayFor(model => model.AssignmentDate)</dd>
+
+        <dt>@Html.DisplayNameFor(model=>model.Type)</dt>
+        <dd>@Model.Type.ToString()</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Instruction):</dt>
+        <dd>@Html.DisplayFor(model => model.Instruction)</dd>
+
+        <dt>State:</dt>
+        <dd>
+            @if (Model.FinishDate != null)
+            {
+                @:Finished: @Html.DisplayFor(model => model.FinishDate)
+            }
+            else
+            {
+                @:Not Finished
+            }
+        </dd>
+    </dl>
+</div>

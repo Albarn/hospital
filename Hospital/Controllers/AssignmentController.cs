@@ -39,6 +39,22 @@ namespace Hospital.Controllers
                 .OrderBy(a=>a.AssignmentDate));
         }
 
+        public ActionResult Details(string id)
+        {
+            Assignment assignment = assignments.Find(id);
+            if (assignment == null)
+            {
+                return HttpNotFound();
+            }
+            if (User.IsInRole(Role.Patient.ToString()) &&
+                assignment.Treatment.PatientId != UserService.GetUserId())
+            {
+                return HttpNotFound();
+            }
+
+            return View(assignment);
+        }
+
         [Authorize(Roles="Admin, Doctor, Nurse")]
         public ActionResult Assigned(string id)
         {

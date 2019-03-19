@@ -10,8 +10,9 @@
     {
     <div id="@a.AssignmentId">
         <div class="list-group-item">
-            @a.AssignmentDate.ToShortDateString() / [@a.Type] 
-            @Html.ActionLink(a.Treatment.Patient.FullName,"Details","Treatment",new { id = a.TreatmentId },new { }) <br />
+            @Html.ActionLink("Details", "Details", new { id = a.AssignmentId })<br />
+            @a.AssignmentDate.ToShortDateString() / [@a.Type]
+            @Html.ActionLink(a.Treatment.Patient.FullName, "Details", "Treatment", new { id = a.TreatmentId }, new { }) <br />
             Instruction:
             <p>
                 @a.Instruction

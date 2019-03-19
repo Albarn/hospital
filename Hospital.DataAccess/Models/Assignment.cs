@@ -29,7 +29,11 @@ namespace Hospital.DataAccess.Models
         public string NurseId { get; set; }
         public Nurse Nurse { get; set; }
         
+        [Display(Name ="Assignment Date")]
+        [DataType(DataType.Date)]
         public DateTime AssignmentDate { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime? FinishDate { get; set; }
 
         [Required]
