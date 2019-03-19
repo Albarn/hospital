@@ -31,6 +31,22 @@ namespace Hospital.Controllers
                 .OrderBy(a=>a.AssignmentDate));
         }
 
+        [Authorize(Roles="Admin, Doctor, Nurse")]
+        public ActionResult Assigned(string id)
+        {
+            return View("List",assignments
+                .Get(a => a.FinishDate == null && (a.DoctorId == id || a.NurseId == id))
+                .OrderBy(a => a.AssignmentDate));
+        }
+
+        public ActionResult Patient(string id)
+        {
+            if (User.IsInRole(Role.Patient.ToString())) id = UserService.GetUserId();
+            return View("List",assignments
+                .Get(a => a.FinishDate == null && (a.Treatment.PatientId==id))
+                .OrderBy(a => a.AssignmentDate));
+        }
+
         [Authorize(Roles="Doctor")]
         public ActionResult New(string id)
         {

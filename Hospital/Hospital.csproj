@@ -291,6 +291,7 @@
     <Content Include="Views\Shared\EmptyPartial.cshtml" />
     <Content Include="Views\Assignment\Index.cshtml" />
     <Content Include="Views\Doctor\Details.cshtml" />
+    <Content Include="Views\Assignment\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

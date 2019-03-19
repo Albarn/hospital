@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Hospital.DataAccess.Models.Assignment>
+@{
+    ViewBag.Title = "Assignments";
+}
+
+<h4>Assignments</h4>
+<hr />
+<div class="list-group">
+    @foreach (var a in Model)
+    {
+    <div id="@a.AssignmentId">
+        <div class="list-group-item">
+            @a.AssignmentDate.ToShortDateString() / [@a.Type] 
+            @Html.ActionLink(a.Treatment.Patient.FullName,"Details","Patient",new { id = a.Treatment.PatientId },new { }) <br />
+            Instruction:
+            <p>
+                @a.Instruction
+            </p>
+        </div>
+    </div>
+        
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/scripts/jquery-3.3.1.min.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+}
