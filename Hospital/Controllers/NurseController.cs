@@ -1,6 +1,7 @@
 ﻿using Hospital.BLL;
 using Hospital.DataAccess;
 using Hospital.DataAccess.Models;
+using Hospital.Filters;
 using Hospital.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Hospital.Controllers
 {
+    [ExceptionHandlerAttribute]
     public class NurseController : Controller
     {
         private IRepository<Nurse> nurses;

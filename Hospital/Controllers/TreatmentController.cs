@@ -1,6 +1,7 @@
 ﻿using Hospital.BLL;
 using Hospital.DataAccess;
 using Hospital.DataAccess.Models;
+using Hospital.Filters;
 using Hospital.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 namespace Hospital.Controllers
 {
     [Authorize]
+    [ExceptionHandler]
     public class TreatmentController : Controller
     {
         private IRepository<Treatment> treatments;
@@ -25,6 +27,7 @@ namespace Hospital.Controllers
         [Authorize(Roles = "Admin")] 
         public ActionResult New(string id)
         {
+            throw new Exception();
             if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
 
             return View();

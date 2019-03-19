@@ -1,4 +1,5 @@
 ﻿using Hospital.DataAccess.Models;
+using Hospital.Filters;
 using Hospital.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 namespace Hospital.Controllers
 {
     [Authorize]
+    [ExceptionHandler]
     public class AccountController : Controller
     {
         private SignInManager<User, string> SignInManager => HttpContext.GetOwinContext().Get<SignInManager<User, string>>();

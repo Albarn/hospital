@@ -1,6 +1,7 @@
 ﻿using Hospital.BLL;
 using Hospital.DataAccess;
 using Hospital.DataAccess.Models;
+using Hospital.Filters;
 using Hospital.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 namespace Hospital.Controllers
 {
     [Authorize]
+    [ExceptionHandlerAttribute]
     public class AssignmentController : Controller
     {
         private IRepository<Assignment> assignments;
