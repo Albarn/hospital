@@ -1399,3 +1399,13 @@
    at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
    at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__3()
    at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__5(IAsyncResult asyncResult)
+2019-03-19 23:18:01.7128|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Home/Index
+2019-03-19 23:18:25.0883|INFO|Hospital.Filters.RequestLoggerAttribute|GET/http://localhost:51558/Doctor
+2019-03-19 23:18:44.1811|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|in db seed method
+2019-03-19 23:18:44.1811|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|register admin user
+2019-03-19 23:18:46.4638|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating doctors
+2019-03-19 23:18:46.5337|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating nurses
+2019-03-19 23:18:46.5337|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating patients
+2019-03-19 23:18:46.5527|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating treatments
+2019-03-19 23:18:46.5527|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating assignments
+2019-03-19 23:18:46.5937|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|saving changes to the context

@@ -14,6 +14,7 @@ using System.Web.Mvc;
 namespace Hospital.Controllers
 {
     [ExceptionHandlerAttribute]
+    [RequestLogger]
     public class NurseController : Controller
     {
         private IRepository<Nurse> nurses;

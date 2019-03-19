@@ -13,6 +13,7 @@ namespace Hospital.Controllers
 {
     [Authorize]
     [ExceptionHandler]
+    [RequestLogger]
     public class AccountController : Controller
     {
         private SignInManager<User, string> SignInManager => HttpContext.GetOwinContext().Get<SignInManager<User, string>>();

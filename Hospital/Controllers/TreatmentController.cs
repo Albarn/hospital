@@ -13,6 +13,7 @@ namespace Hospital.Controllers
 {
     [Authorize]
     [ExceptionHandler]
+    [RequestLogger]
     public class TreatmentController : Controller
     {
         private IRepository<Treatment> treatments;
@@ -27,7 +28,6 @@ namespace Hospital.Controllers
         [Authorize(Roles = "Admin")] 
         public ActionResult New(string id)
         {
-            throw new Exception();
             if (!UserService.IsUserInRole(id, Role.Patient)) return HttpNotFound();
 
             return View();

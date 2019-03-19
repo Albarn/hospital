@@ -13,7 +13,8 @@ using System.Web.Mvc;
 
 namespace Hospital.Controllers
 {
-    [ExceptionHandlerAttribute]
+    [ExceptionHandler]
+    [RequestLogger]
     public class DoctorController : Controller
     {
         private IRepository<Doctor> doctors;

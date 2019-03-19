@@ -12,7 +12,7 @@ using System.Web.Configuration;
 
 namespace Hospital.DataAccess.EntityFramework
 {
-    class HospitalDbInitializer : DropCreateDatabaseAlways<HospitalDbContext>
+    class HospitalDbInitializer : DropCreateDatabaseIfModelChanges<HospitalDbContext>
     {
         protected override void Seed(HospitalDbContext context)
         {

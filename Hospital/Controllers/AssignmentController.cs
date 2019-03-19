@@ -12,7 +12,8 @@ using System.Web.Mvc;
 namespace Hospital.Controllers
 {
     [Authorize]
-    [ExceptionHandlerAttribute]
+    [ExceptionHandler]
+    [RequestLogger]
     public class AssignmentController : Controller
     {
         private IRepository<Assignment> assignments;

@@ -15,6 +15,7 @@ namespace Hospital.Controllers
 {
     [Authorize]
     [ExceptionHandler]
+    [RequestLogger]
     public class PatientController : Controller
     {
         private IRepository<Patient> patients;

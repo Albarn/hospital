@@ -8,6 +8,7 @@ using System.Web.Mvc;
 namespace Hospital.Controllers
 {
     [ExceptionHandlerAttribute]
+    [RequestLogger]
     public class HomeController : Controller
     {
         public ActionResult Index()

@@ -188,7 +188,8 @@
     <Compile Include="Controllers\NurseController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\TreatmentController.cs" />
-    <Compile Include="Filters\ErrorLogger.cs" />
+    <Compile Include="Filters\ExceptionHandler.cs" />
+    <Compile Include="Filters\RequestLogger.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
