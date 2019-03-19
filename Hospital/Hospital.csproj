@@ -292,6 +292,7 @@
     <Content Include="Views\Assignment\Index.cshtml" />
     <Content Include="Views\Doctor\Details.cshtml" />
     <Content Include="Views\Assignment\List.cshtml" />
+    <Content Include="Views\Nurse\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
