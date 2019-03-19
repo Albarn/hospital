@@ -21,6 +21,7 @@ namespace Hospital.DataAccess.Models
 
         [DataType(DataType.Date)]
         [Required]
+        [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
         
         public ICollection<Treatment> Treatments { get; set; }

@@ -37,6 +37,20 @@ namespace Hospital.Controllers
                 .OrderBy(d => d.FullName));
         }
 
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                if (User.IsInRole(Role.Doctor.ToString())) id = UserService.GetUserId();
+                else return HttpNotFound();
+            }
+            Doctor doctor = doctors.Find(id);
+            if (doctor != null)
+                return View(doctors.Find(id));
+            else
+                return HttpNotFound();
+        }
+
         [Authorize(Roles ="Admin")]
         public ActionResult New(string id)
         {

@@ -70,6 +70,7 @@ namespace Hospital.Controllers
                 }));
         }
 
+        [Authorize(Roles ="Admin, Doctor, Nurse")]
         public ActionResult Doctor(string id)
         {
             if (User.IsInRole(Role.Doctor.ToString()) && id == null) id = UserService.GetUserId();

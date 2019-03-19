@@ -1,0 +1,23 @@
+﻿@model Hospital.DataAccess.Models.Doctor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Doctor Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.FullName)</dt>
+        <dd>@Html.DisplayFor(model => model.FullName)</dd>
+        <dt>@Html.DisplayNameFor(model=>model.Position)</dt>
+        <dd>@Html.DisplayFor(model=>model.Position)</dd>
+    </dl>
+</div>
+<p>
+    @if(User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse"))
+    {  
+    @Html.ActionLink("Treatments", "Doctor","Treatment", new { id = Model.UserId }, new { }) @:|
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>
