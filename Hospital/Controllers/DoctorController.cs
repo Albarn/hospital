@@ -1,6 +1,5 @@
 ﻿using Hospital.BLL;
 using Hospital.DataAccess;
-using Hospital.DataAccess.EntityFramework;
 using Hospital.DataAccess.Models;
 using Hospital.Models;
 using Microsoft.AspNet.Identity;
@@ -15,8 +14,14 @@ namespace Hospital.Controllers
 {
     public class DoctorController : Controller
     {
-        private IRepository<Doctor> doctors = new DoctorRepository();
-        private IRepository<Treatment> treatments = new TreatmentRepository();
+        private IRepository<Doctor> doctors;
+        private IRepository<Treatment> treatments;
+
+        public DoctorController(IRepository<Doctor> doctors, IRepository<Treatment> treatments)
+        {
+            this.doctors = doctors;
+            this.treatments = treatments;
+        }
         
         public ActionResult Index()
         {
@@ -54,7 +59,7 @@ namespace Hospital.Controllers
                 Position = model.Position
             };
             doctors.Add(doctor);
-            UserService.FinishRegistration(id);
+            UserService.SetUserConfirmed(id);
             return RedirectToAction("Index");
         }
     }

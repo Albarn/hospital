@@ -13,7 +13,12 @@ namespace Hospital.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private SignInManager<User, string> SignInManager => HttpContext.GetOwinContext().Get<SignInManager<User, string>>();
+        private SignInManager<User, string> signInManager;
+
+        public AccountController()
+        {
+            signInManager = HttpContext.GetOwinContext().Get<SignInManager<User, string>>();
+        }
 
         [AllowAnonymous]
         public ActionResult Login()
@@ -27,7 +32,7 @@ namespace Hospital.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var loginResult = SignInManager.PasswordSignIn(model.UserName, model.Password, true, false);
+            var loginResult = signInManager.PasswordSignIn(model.UserName, model.Password, true, false);
             if (loginResult != SignInStatus.Success)
             {
                 ModelState.AddModelError("", "Invalid login attempt.");
@@ -35,10 +40,10 @@ namespace Hospital.Controllers
             }
             
             //check IsConfirmed property
-            var user = SignInManager.UserManager.FindByName(model.UserName);
+            var user = signInManager.UserManager.FindByName(model.UserName);
             if (user != null && user.IsConfirmed != true)
             {
-                SignInManager.AuthenticationManager.SignOut();
+                signInManager.AuthenticationManager.SignOut();
                 ModelState.AddModelError("", "Registration is not completed.");
                 return View(model);
             }
@@ -50,7 +55,7 @@ namespace Hospital.Controllers
 
         public ActionResult Logout()
         {
-            SignInManager.AuthenticationManager.SignOut();
+            signInManager.AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
@@ -69,7 +74,7 @@ namespace Hospital.Controllers
         {
             if (role == Role.Admin) return HttpNotFound();
             if (!ModelState.IsValid) return View(model);
-            if (SignInManager.UserManager.FindByName(model.UserName) != null)
+            if (signInManager.UserManager.FindByName(model.UserName) != null)
             {
                 ModelState.AddModelError("", "This User Name is not available.");
                 return View(model);
@@ -80,7 +85,7 @@ namespace Hospital.Controllers
                 IsConfirmed = false,
                 Roles = (int)role
             };
-            var res = SignInManager.UserManager.Create(user, model.Password);
+            var res = signInManager.UserManager.Create(user, model.Password);
             if (!res.Succeeded)
             {
                 ModelState.AddModelError("", "Failed to create user, try again.");

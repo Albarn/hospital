@@ -1,6 +1,5 @@
 ﻿using Hospital.BLL;
 using Hospital.DataAccess;
-using Hospital.DataAccess.EntityFramework;
 using Hospital.DataAccess.Models;
 using Hospital.Models;
 using Microsoft.AspNet.Identity;
@@ -16,7 +15,12 @@ namespace Hospital.Controllers
     [Authorize]
     public class PatientController : Controller
     {
-        private IRepository<Patient> patients = new PatientRepository();
+        private IRepository<Patient> patients;
+
+        public PatientController(IRepository<Patient> patients)
+        {
+            this.patients = patients;
+        }
 
         // GET: Patient
         [Authorize(Roles = "Admin, Doctor, Nurse")]
@@ -56,7 +60,7 @@ namespace Hospital.Controllers
                 UserId = id
             };
             patients.Add(patient);
-            UserService.FinishRegistration(id);
+            UserService.SetUserConfirmed(id);
             return RedirectToAction("Index");
         }
         

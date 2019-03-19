@@ -1,6 +1,5 @@
 ﻿using Hospital.BLL;
 using Hospital.DataAccess;
-using Hospital.DataAccess.EntityFramework;
 using Hospital.DataAccess.Models;
 using Hospital.Models;
 using System;
@@ -14,8 +13,14 @@ namespace Hospital.Controllers
     [Authorize]
     public class TreatmentController : Controller
     {
-        private IRepository<Treatment> treatments = new TreatmentRepository();
-        private IRepository<Doctor> doctors = new DoctorRepository();
+        private IRepository<Treatment> treatments;
+        private IRepository<Doctor> doctors;
+
+        public TreatmentController(IRepository<Treatment> treatments, IRepository<Doctor> doctors)
+        {
+            this.treatments = treatments;
+            this.doctors = doctors;
+        }
 
         [Authorize(Roles = "Admin")] 
         public ActionResult New(string id)
