@@ -47,6 +47,31 @@ namespace Hospital.Controllers
                 .OrderBy(a => a.AssignmentDate));
         }
 
+        [Authorize(Roles = "Doctor, Nurse")]
+        public ActionResult Archive()
+        {
+            string id = UserService.GetUserId();
+            return View(assignments
+                .Get(a => a.FinishDate != null && (a.DoctorId == id || a.NurseId == id))
+                .OrderBy(a => a.AssignmentDate));
+        }
+
+        [Authorize(Roles = "Admin, Doctor, Nurse")]
+        public ActionResult AssignedArchive(string id)
+        {
+            return View("Archive", assignments
+                .Get(a => a.FinishDate != null && (a.DoctorId == id || a.NurseId == id))
+                .OrderBy(a => a.AssignmentDate));
+        }
+
+        public ActionResult PatientArchive(string id)
+        {
+            if (User.IsInRole(Role.Patient.ToString())) id = UserService.GetUserId();
+            return View("Archive", assignments
+                .Get(a => a.FinishDate != null && (a.Treatment.PatientId == id))
+                .OrderBy(a => a.AssignmentDate));
+        }
+
         [Authorize(Roles="Doctor")]
         public ActionResult New(string id)
         {

@@ -766,3 +766,27 @@
 2019-03-19 17:57:02.0105|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating treatments
 2019-03-19 17:57:02.0105|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating assignments
 2019-03-19 17:57:02.0385|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|saving changes to the context
+2019-03-19 18:14:08.0812|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|in db seed method
+2019-03-19 18:14:08.1262|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|register admin user
+2019-03-19 18:14:09.3844|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|register admin succeded
+2019-03-19 18:14:09.4324|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user john_d registred
+2019-03-19 18:14:09.4714|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user sasha_d registred
+2019-03-19 18:14:09.5034|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user mika_d registred
+2019-03-19 18:14:09.5543|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user tom_d registred
+2019-03-19 18:14:09.5983|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user jack_d registred
+2019-03-19 18:14:09.6253|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user mike_n registred
+2019-03-19 18:14:09.6563|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user kate_n registred
+2019-03-19 18:14:09.6823|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user hommy_n registred
+2019-03-19 18:14:09.7083|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user stasey_n registred
+2019-03-19 18:14:09.7356|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user rick_n registred
+2019-03-19 18:14:09.7626|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user pike_p registred
+2019-03-19 18:14:09.7894|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user poppy_p registred
+2019-03-19 18:14:09.8164|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user ira_p registred
+2019-03-19 18:14:09.8434|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user stan_p registred
+2019-03-19 18:14:09.8704|DEBUG|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|user pobby_p registred
+2019-03-19 18:14:09.8704|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating doctors
+2019-03-19 18:14:09.9253|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating nurses
+2019-03-19 18:14:09.9314|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating patients
+2019-03-19 18:14:09.9314|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating treatments
+2019-03-19 18:14:09.9314|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|creating assignments
+2019-03-19 18:14:09.9593|INFO|Hospital.DataAccess.EntityFramework.HospitalDbInitializer|saving changes to the context
